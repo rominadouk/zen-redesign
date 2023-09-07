@@ -12,9 +12,9 @@ const Navbar = () => {
         <div>
             <nav id="mobile-navbar" className="flex flex-row justify-center bg-light-brown lg:justify-start md:hidden flex-wrap">
                     {/* Mobile Navbar */}
-                        <h1 className='flex flex-column justify-center text-3xl font-header basis-full'>zen</h1>
+                        <h1 className='flex flex-column justify-center text-3xl font-header basis-full my-3 text-4xl'>zen</h1>
                     {/* <h1 className='flex flex-column justify-center text-3xl font-header'>zen</h1> */}
-                    <ul id="mobile-nav-ul" className='flex flex-row space-x-10'>
+                    <ul id="mobile-nav-ul" className='flex flex-row space-x-12 pb-3'>
                         <li className='h-8 w-8'><SelfCareIcon/></li>
                         <li className='h-8 w-8'> <JournalIcon /></li>
                         <li className='h-8 w-8'> <GoalIcon /> </li>
@@ -22,10 +22,10 @@ const Navbar = () => {
                     </ul>
             </nav>
 
-            <nav id="desktop-navbar" className="hidden md:block bg-light-brown flex flex-row">
+            <nav id="desktop-navbar" className="hidden md:flex bg-light-brown flex-row ">
                 {/* Desktop Navbar */}
-                <h1 className='flex'>Zen</h1>
-                <ul id="desktop-nav-ul" className="flex flex-row">
+                <h1 className=''>Zen</h1>
+                <ul id="desktop-nav-ul" className="">
                     <li className=''>Journal</li>
                     <li className=''>Goals</li>
                     <li className=''>Habits</li>
