@@ -22,18 +22,20 @@ const Navbar = () => {
                     </ul>
             </nav>
 
-            <nav id="desktop-navbar" className="hidden md:flex bg-light-brown flex-row ">
+            <nav id="desktop-navbar" className="hidden md:flex bg-light-brown flex-row h-16 justify-between">
                 {/* Desktop Navbar */}
-                <h1 className=''>Zen</h1>
-                <ul id="desktop-nav-ul" className="">
+                <h1 className='basis-1/6 font-header text-5xl place-self-center text-center'>zen</h1>
+                <ul id="desktop-nav-ul" className="flex text-xl space-x-12 place-self-center text-center">
+                    <li className=''>Self-Care</li>
                     <li className=''>Journal</li>
                     <li className=''>Goals</li>
                     <li className=''>Habits</li>
-                    <li className=''>User</li>
                 </ul>
-                <p className=''>You got this, User</p>
-                {/* Insert avatar here */}
-                <p className=''>Logout</p>
+                <section id="user-greeting" className='grow place-self-center justify-self-end text-right pr-4'>              
+                    <p className='text-l'>You got this, User</p>
+                    {/* Insert avatar here */}
+                    <p className='text-l'>Logout</p>
+                </section>
             </nav>
 
 
