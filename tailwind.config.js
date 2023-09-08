@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     colors: {
       'light-brown' : '#D5B9B1',
-      'off-white' : '#FAF9F6'
+      'off-white' : '#FAF9F6',
+      'sea-green-blue': '#0F7173'
     },
     extend: {
       fontFamily:{

@@ -31,10 +31,10 @@ const Navbar = () => {
                     <li className=''>Goals</li>
                     <li className=''>Habits</li>
                 </ul>
-                <section id="user-greeting" className='flex flex-row justify-end grow place-self-center justify-self-end text-right pr-[70px]'>
+                <section id="user-greeting" className='flex flex-row justify-end grow place-self-center justify-self-end text-right md:pr-11 lg:pr-[70px]'>
                     <div>
                     <p className='text-l'>You got this, User</p>
-                    <p className='text-l'>Logout</p>
+                    <p className='text-l hover:text-sea-green-blue hover:underline'>Logout</p>
                     </div>             
                     {/* Insert avatar here */}
                     <div className=' bg-off-white rounded-full h-12 w-12 place-self-center ml-4'> </div>
