@@ -5,11 +5,13 @@ module.exports = {
     colors: {
       'light-brown' : '#D5B9B1',
       'off-white' : '#FAF9F6',
-      'sea-green-blue': '#0F7173'
+      'sea-green-blue': '#0F7173',
+      'lime':'#E8EC67'
     },
     extend: {
       fontFamily:{
-        'header': ['Righteous']
+        'brand': ['Righteous'],
+        'archivo': ['Archivo']
       },
     },
   },
