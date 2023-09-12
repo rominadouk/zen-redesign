@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import {ReactComponent as GoalIcon} from '../../assets/flag-icon.svg'
 import {ReactComponent as AddIcon} from '../../assets/add-icon.svg'
 import NewGoal from './new-goal'
@@ -8,24 +8,14 @@ const Goals = () => {
     let tip: string
     let tipFocus: string
     let tipContent: string
-    const [visible, setVisible] = useState(false);
 
     const randomTip = (tips:string[]): String => {
-        return tips[Math.floor(Math.random() * tips.length - 1)];
+        return tips[Math.floor(Math.random() * tips.length)];
     };
 
     console.log(randomTip(['hey','you','cool']))
 
-
-
-    //When Add New Button is clicked, render the goal component.
-    const addButton = document.getElementById('add-goal-button');
-    addButton?.addEventListener("click", () => {
-       return setVisible(true);
-    });
-
-
-    return ( 
+    return (
         <div className='font-archivo'>
             <section id='goals-top' className='flex flex-row mt-12 mb-4 justify-around'>
                 <div className='flex flex-row'>
@@ -43,8 +33,6 @@ const Goals = () => {
                 <p className='text-2xl'>Self-care goals can help you practice caring for yourself during difficult times. They can also help you feel more confident, make better decisions, and build stronger relationships.</p>
                 <p className='text-sea-green-blue underline'>Dismiss</p>
             </div>
-            {/* {visible ? <NewGoal /> : ''} */}
-            {/* <NewGoal /> */}
         </div>
      );
 }
