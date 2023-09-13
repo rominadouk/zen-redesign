@@ -14,7 +14,7 @@ module.exports = {
       'smoke': 'rgba(0, 0, 0, 0.5)',
       'smoke-light': 'rgba(0, 0, 0, 0.4)',
       'smoke-lighter': 'rgba(0, 0, 0, 0.25)',
-      'smoke-lightest': 'rgba(0, 0, 0, 0.1)'
+      'smoke-lightest': 'rgba(0, 0, 0, 0.1)',
 
     },
     extend: {
