@@ -16,15 +16,18 @@ function App() {
   const handleCloseGoalModal = () => {
       setGoalModalOpen(false);
   };
+
       useEffect(() => {
         //When Add New Button is clicked, render the goal component.
         const addButton = document.getElementById('add-goal-button');
         const goalModal = document.getElementById('new-goal-modal-bg');
 
         addButton?.addEventListener("click", handleOpenGoalModal);
-        goalModal?.addEventListener("click", handleCloseGoalModal);
+        
+        if (modalOpen === true) {
+          goalModal?.addEventListener("click", handleCloseGoalModal)}
 
-    }, []);
+    }, [modalOpen]);
   
   return (
     <div className="App">
@@ -34,7 +37,7 @@ function App() {
         <Route path="/goals" element={<Goals />} />
       </Routes>
     </div>
-  );
+  ); 
 }
 
 export default App;
