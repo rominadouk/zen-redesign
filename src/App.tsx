@@ -7,6 +7,7 @@ import AddGoal from './modules/goals-page/new-goal'
 
 
 function App() {
+  //handling goal modal in app because it needs to go over the navbar
   const [modalOpen, setGoalModalOpen] = useState(false);
   
   const handleOpenGoalModal = () => {

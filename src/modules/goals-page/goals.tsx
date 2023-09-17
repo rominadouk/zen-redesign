@@ -3,17 +3,37 @@ import { useState, useEffect} from 'react';
 import {ReactComponent as GoalIcon} from '../../assets/flag-icon.svg'
 import {ReactComponent as AddIcon} from '../../assets/add-icon.svg'
 import NewGoal from './new-goal'
+import axios from 'axios';
 
 const Goals = () => {
-    let tip: string
-    let tipFocus: string
-    let tipContent: string
+    type Goal = {
+        _id: string,
+        title: string,
+        toBeCompletedBy: string,
+        isCompleted: boolean
+        
+    }
 
-    const randomTip = (tips:string[]): String => {
-        return tips[Math.floor(Math.random() * tips.length)];
+    const [allGoals, setAllGoals] = useState([] as Goal[])
+    const [incompletedGoals, setIncompletedGoals] = useState([] as Goal[])
+    
+    const getGoals = () => {
+        axios.get('http://localhost:4000/goals').then((response)=> {
+            setAllGoals(response.data)
+            console.log(allGoals)
+
+            const incompleted = allGoals.filter((goal: Goal) => !goal.isCompleted);
+            setIncompletedGoals(incompleted)
+            console.log(incompletedGoals)
+        })
     };
 
-    console.log(randomTip(['hey','you','cool']))
+    useEffect(()=> {
+        getGoals();
+
+    },[]);
+
+
 
     return (
         <div className='font-archivo'>
@@ -33,6 +53,24 @@ const Goals = () => {
                 <p className='text-2xl'>Self-care goals can help you practice caring for yourself during difficult times. They can also help you feel more confident, make better decisions, and build stronger relationships.</p>
                 <p className='text-sea-green-blue underline'>Dismiss</p>
             </div>
+            {incompletedGoals.map((incompleteGoal)=> {
+                const date = new Date(incompleteGoal.toBeCompletedBy);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    month:'short',
+                    day:'numeric',
+                    year:'numeric'
+                })
+
+                return (
+                    <div className='goal-entry flex flex-col' key={incompleteGoal._id}>
+                        <div className='flex flex-row'>
+                            <input type='checkbox' name="isCompleted"/>
+                            <p>{incompleteGoal.title}</p>
+                        </div>
+                        <p className=''>{formattedDate}</p>
+                    </div>
+                )
+            })}
         </div>
      );
 }
