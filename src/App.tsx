@@ -22,20 +22,22 @@ function App() {
         //When Add New Button is clicked, render the goal component.
         const addButton = document.getElementById('add-goal-button');
         const goalModal = document.getElementById('new-goal-modal-bg');
+        const exitGoalModal = document.getElementById('cancel-goal-modal');
 
-        addButton?.addEventListener("click", handleOpenGoalModal);
+        addButton?.addEventListener('click', handleOpenGoalModal);
+        exitGoalModal?.addEventListener('click', handleCloseGoalModal);
         
         if (modalOpen === true) {
-          goalModal?.addEventListener("click", handleCloseGoalModal)}
+          goalModal?.addEventListener('click', handleCloseGoalModal)}
 
     }, [modalOpen]);
   
   return (
-    <div className="App">
+    <div className='App'>
       {modalOpen && <AddGoal />} 
       <Navbar />
       <Routes>
-        <Route path="/goals" element={<Goals />} />
+        <Route path='/goals' element={<Goals />} />
       </Routes>
     </div>
   ); 

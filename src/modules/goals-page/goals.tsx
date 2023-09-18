@@ -44,18 +44,19 @@ const Goals = () => {
     return (
         <div className='font-archivo'>
             {/* GOALS HEADER */}
-            <section id='goals-top' className='flex flex-row mt-12 mb-4 mx-4 md:mx-16 justify-between'>
+            <section id='goals-top' className='flex flex-row mt-12 mb-4 mx-5 md:mx-16 justify-between xl:mx-24'>
                 <div className='flex flex-row'>
                     <GoalIcon className='w-8 h-8 self-center'/>
                     <h1 className='text-4xl ml-2 font-bold'>Goals</h1>
                 </div>
+                {/* ADD GOAL BUTTON */}
                 <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3'>
                     <p className='text-off-white self-center py-2'>Add New</p>
                     <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>
                 </button>
             </section>
             {/* DAILY TIP SECTION*/}
-            <div id='daily-tip-container' className='bg-lime rounded-3xl mx-4 px-8 py-3 drop-shadow-lg mb-5 md:mx-16'>
+            <div id='daily-tip-container' className='bg-lime rounded-3xl mx-5 px-8 py-3 drop-shadow-lg mb-5 md:mx-16 xl:mx-24'>
                 <p className='text-based'>Daily Tip</p>
                 <p className='text-2xl font-bold'>Practice Caring for Yourself</p>
                 <p className='text-2xl'>Self-care goals can help you practice caring for yourself during difficult times. They can also help you feel more confident, make better decisions, and build stronger relationships.</p>
@@ -70,7 +71,7 @@ const Goals = () => {
                 })
 
                 return (
-                    <div className='goal-entry flex flex-col bg-light-blue-goals mx-4 my-1 h-20 md:mx-16' key={incompleteGoal._id}>
+                    <div className='goal-entry flex flex-col bg-light-blue-goals mx-5 my-1 h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
                         <div className='flex flex-row mt-4'>
                             <input className='ml-3 mr-2' type='checkbox' name="isCompleted"/>
                             <p className='text-2xl'>{incompleteGoal.title}</p>
