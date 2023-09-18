@@ -44,13 +44,13 @@ const Goals = () => {
     return (
         <div className='font-archivo'>
             {/* GOALS HEADER */}
-            <section id='goals-top' className='flex flex-row mt-12 mb-4 justify-around'>
+            <section id='goals-top' className='flex flex-row mt-12 mb-4 mx-4 md:mx-16 justify-between'>
                 <div className='flex flex-row'>
                     <GoalIcon className='w-8 h-8 self-center'/>
                     <h1 className='text-4xl ml-2 font-bold'>Goals</h1>
                 </div>
                 <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3'>
-                    <p className='text-off-white self-center py-2 '>Add New</p>
+                    <p className='text-off-white self-center py-2'>Add New</p>
                     <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>
                 </button>
             </section>
