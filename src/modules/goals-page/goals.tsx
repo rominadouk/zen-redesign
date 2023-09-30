@@ -17,6 +17,7 @@ const Goals = () => {
     const [allGoals, setAllGoals] = useState([] as Goal[])
     const [incompletedGoals, setIncompletedGoals] = useState([] as Goal[])
     
+    //Get goals and filter out incompleted goals to a different array
     const getGoals = async () => {
         try {
             const response = await axios.get('http://localhost:4000/goals')
@@ -26,14 +27,19 @@ const Goals = () => {
         } catch (err) {
             console.log(err)
         }
-
     };
+
+    const handleCompletedGoals = (e:React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+
+
+    }
 
     useEffect(()=> {
         getGoals()
         document.getElementById('dismiss-tip')?.addEventListener('click', () => {
             const tipContainer = document.getElementById('daily-tip-container')
-            tipContainer!.className = 'invisible'
+            tipContainer!.className = 'hidden'
 
         })
 
@@ -68,18 +74,22 @@ const Goals = () => {
                     month:'short',
                     day:'numeric',
                     year:'numeric'
-                })
+                });
 
                 return (
-                    <div className='goal-entry flex flex-col bg-light-blue-goals mx-5 my-1 h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
-                        <div className='flex flex-row mt-4'>
-                            <input className='ml-3 mr-2' type='checkbox' name="isCompleted"/>
-                            <p className='text-2xl'>{incompleteGoal.title}</p>
+                    <div className='goal-entry flex flex-col place-content-center bg-light-blue-goals mx-5 my-1 h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
+                        <div className='flex flex-row justify-between'>
+                            <div className='flex flex-row'> 
+                                <input className='ml-3 mr-2' type='checkbox' name="isCompleted"/>
+                                <p className='text-2xl'>{incompleteGoal.title}</p>
+                            </div>
+                            <p className='text-base place-self-center mr-4'>{formattedDate}</p>
                         </div>
-                        <p className='text-base self-end mr-4'>{formattedDate}</p>
+                        
+
                     </div>
                 )
-            })}
+            })} 
         </div>
      );
 }
