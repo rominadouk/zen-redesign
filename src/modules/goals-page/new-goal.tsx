@@ -53,7 +53,8 @@ const AddGoal = () => {
         // Modal Wrapper: fill entire viewport & center align content, vertically and horizontally. 
         <div className='flex justify-center'>
             <div id='new-goal-modal-bg' className='h-screen w-screen fixed pin z-40 overflow-auto bg-smoke-dark flex'></div>
-            <section className='z-50 fixed flex flex-col my-40 justify-center bg-goal-modal-blue p-2 py-6'>
+            {/* Modal Container */}
+            <section className='z-50 fixed flex flex-col my-40 justify-center bg-goal-modal-blue p-2 py-2'>
             <h1 className='text-2xl font-semibold mx-4'>Add New Goal</h1>
 
             {/* MODAL FORM TO CREATE NEW GOAL */}
@@ -62,16 +63,13 @@ const AddGoal = () => {
                     <input id='goal-title'  className='p-1 rounded-md' type='text' name="title" onChange={handleChange} placeholder='e.g. Finish my designs' />
                     <label className='mt-5 text-sm '>Complete By</label>
                     <input id='date-to-complete' className='p-1 rounded-md' type='date' name='toBeCompletedBy' onChange={handleChange} placeholder='e.g. Date to be completed'/>
-                    <div id='goal-buttons' className='flex flex-row mx-3 justify-around'>
+                    {/* Buttons Div */}
+                    <div id='goal-buttons' className='flex flex-row mx-3 mt-4 justify-around'>
                         <button id='cancel-goal-modal' className='flex bg-off-white rounded-md px-4 py-1 align-center'>Cancel</button>
                         <input className='flex bg-sea-green-blue text-off-white rounded-md px-4 py-1 align-center' type='submit'/>
                     </div>
-
                 </form>
                 {/* NEW GOAL MODAL FORM END */}
-
-            <div id='goal-buttons' className='flex flex-row mx-3 justify-around'>
-            </div>
             </section>
         </div>
      );

@@ -16,7 +16,8 @@ module.exports = {
       'smoke-lighter': 'rgba(0, 0, 0, 0.25)',
       'smoke-lightest': 'rgba(0, 0, 0, 0.1)',
       'light-blue-goals': 'rgba(164,189,190,.5)',
-      'goal-modal-blue':'#C3D3D4'
+      'goal-modal-blue':'#C3D3D4',
+      'darker-red': '#d11a2a'
 
     },
     extend: {
