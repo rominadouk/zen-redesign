@@ -4,6 +4,7 @@ import {ReactComponent as GoalIcon} from '../../assets/flag-icon.svg'
 import {ReactComponent as AddIcon} from '../../assets/add-icon.svg'
 import {ReactComponent as DeleteIcon} from '../../assets/delete-icon.svg'
 import {ReactComponent as EditIcon} from '../../assets/edit-icon.svg'
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Goals = () => {
@@ -14,18 +15,17 @@ const Goals = () => {
         isCompleted: boolean
         
     }
-    const [ goalUpdatedData, setGoalUpdatedData ] = useState({})
-    //Change the data in the object directly
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-        setGoalUpdatedData({
-            ...goalUpdatedData,
-            [e.target.name]: e.target.value
-        })
-    };
-
+    const [displayPost, setDisplayPost] = useState('');
     const [allGoals, setAllGoals] = useState([] as Goal[]);
     const [incompletedGoals, setIncompletedGoals] = useState([] as Goal[]);
     const [editing, setEditing] = useState(false);
+    const [editedGoal, setEditedGoal] = useState({
+        title: '',
+        toBeCompletedBy: ''
+    });
+
+    const { id } = useParams();
+    const navigate = useNavigate();
     
     //Get goals and filter out incompleted goals to a different array
     const getGoals = async () => {
@@ -38,18 +38,44 @@ const Goals = () => {
             console.log(err)
         }
     };
-
-    const handleUpdateGoal = async (editedGoal: Goal) => {
-        try {
-            const response = await axios.put(`http://localhost:4000/goals/${editedGoal._id}`, editedGoal )
-        } catch(err) {
-            console.log(err)
-        }
-    };
-    //hanlde completed, checked goals
-    const handleCompletedGoals = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleEditSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log('handleEditSubmit called')
+        console.log(editedGoal)
+        handleEditUpdate(editedGoal)
+    }
+
+    const handleEditUpdate = async (editedGoal: {}) => {
+        console.log(displayPost)
+            try {
+                const response = await axios.put(`http://localhost:4000/goals/${displayPost}`, editedGoal )
+                setEditing(false);
+                console.log(response)
+                setEditedGoal({
+                    title: '',
+                    toBeCompletedBy: ''
+                });
+                window.location.reload()
+            } catch(err) {
+                console.log(err)
+            }
+
     };
+
+    // When the user clicks the "Edit" button, set the editingGoal state.
+    const [ goalUpdatedData, setGoalUpdatedData ] = useState({})
+    //Change the data in the object directly
+    const handleEditFormChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setEditedGoal({
+            ...editedGoal,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    //hanlde completed, checked goals
+    // const handleCompletedGoals = (e:React.ChangeEvent<HTMLInputElement>) => {
+    //     e.preventDefault();
+    // };
 
 
     //handle the deletion of Goal
@@ -64,7 +90,7 @@ const Goals = () => {
     };
 
     useEffect(()=> {
-        getGoals()
+        getGoals();
         document.getElementById('dismiss-tip')?.addEventListener('click', () => {
             const tipContainer = document.getElementById('daily-tip-container')
             tipContainer!.className = 'hidden'
@@ -96,6 +122,7 @@ const Goals = () => {
                 <p id='dismiss-tip' className='text-sea-green-blue underline w-16'>Dismiss</p>
             </div>
             {incompletedGoals.map((incompleteGoal)=> {
+                const isDisplayed = incompleteGoal._id === displayPost
                 const date = new Date(incompleteGoal.toBeCompletedBy);
                 const formattedDate = date.toLocaleDateString('en-US', {
                     month:'short',
@@ -104,32 +131,54 @@ const Goals = () => {
                 });
 
                 return (
-                    // Individual Goal div's
-                    <div className='goal-entry flex flex-col place-content-center bg-light-blue-goals mx-5 my-1 h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
-                        <div className='flex flex-row justify-between'>
-                            <div className='flex flex-row'> 
-                                <input className='ml-3 mr-2' type='checkbox' name="isCompleted"/>
-                                <p className='text-2xl'>{incompleteGoal.title}</p>
-                            </div>
-                            <p className='text-base place-self-center mr-4'>{formattedDate}</p>
-                        </div>
-                        <div className='flex flex-row justify-center'> 
-                        <button className='flex flex-row justify-center bg-darker-red rounded-md px-3 w-28' onClick={(event)=> {
-                            handleDeleteGoal(incompleteGoal)
-                        }}>
-                            <DeleteIcon className='h-6 self-center text-off-white'/>
-                            <p className='self-center text-lg text-off-white'>Delete</p>
-                        </button>
-                        {/* When Edit Button clicked, set editing state to true */}
-                        <button className='flex flex-row  justify-center bg-sea-green-blue rounded-md px-3 w-28' onClick={() => {
-                            setEditing(true)
-                        }}>
+                    //Individual Goal div's
+                    <div className='goal-entry flex flex-col place-content-center bg-light-blue-goals mx-5 my-1 md:h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
+                        {editing ? (
+                            // If Editing mode is true, render editing inputs otherwise render regular data
+                            <>
+                            <h2>Edit Goal</h2>
+                            <form className='flex flex-col items-center lg:flex-row lg:justify-between' onSubmit={handleEditSubmit}>
+                                <div className='flex flex-col lg:flex-row mt-5'>
+                                    <input className='w-60 lg:mx-4' type='text' name='title' value={editedGoal.title} onChange={handleEditFormChange} />
+                                    <input className='w-48' type='date' name='toBeCompletedBy' value={editedGoal.toBeCompletedBy} onChange={handleEditFormChange} />
+                                </div>
+                                <div className='lg:mr-20'>
+                                    <button className='px-3 w-28' onClick={() => {
+                                        setEditing(false)
+                                    }}>Cancel</button>
+                                    <input type='submit' className='px-3 w-28' value='Update' />
+                                </div>
+                            </form>
+                            </>
 
-                            <DeleteIcon className='h-6 self-center text-off-white'/>
-                            <p className='self-center text-lg text-off-white'>Edit</p>
-                        </button>
-                        </div>
-
+                        ): (
+                            <>
+                                <div className='flex flex-row justify-between'>
+                                    <div className='flex flex-row'>
+                                        <input className='ml-3 mr-2' type='checkbox' name="isCompleted"/>
+                                        <p className='text-2xl'>{incompleteGoal.title}</p>
+                                    </div>
+                                        <p className='text-base place-self-center mr-4'>{formattedDate}</p>
+                                </div>
+                                {/* BUTTONS CONTAINER */}
+                                <div className='flex flex-row justify-center'> 
+                                    <button className='flex flex-row justify-center bg-darker-red rounded-md px-3 w-28' onClick={(event)=> {
+                                        handleDeleteGoal(incompleteGoal)
+                                    }}>
+                                        <DeleteIcon className='h-6 self-center text-off-white'/>
+                                        <p className='self-center text-lg text-off-white'>Delete</p>
+                                    </button>
+                                    {/* When Edit Button clicked, set editing state to true */}
+                                    <button className='flex flex-row  justify-center bg-sea-green-blue rounded-md px-3 w-28' onClick={() => {
+                                        setEditing(true)
+                                        setDisplayPost(incompleteGoal._id)
+                                    }}>
+                                        <EditIcon className='h-6 self-center text-off-white'/>
+                                        <p className='self-center text-lg text-off-white'>Edit</p>
+                                    </button>
+                                </div>
+                            </>
+                        )}
                     </div>
                 )
             })} 
