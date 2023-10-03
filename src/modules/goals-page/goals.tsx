@@ -15,7 +15,7 @@ const Goals = () => {
         isCompleted: boolean
         
     }
-    const [displayPost, setDisplayPost] = useState('');
+    const [displayedPostID, setDisplayedPostID] = useState('');
     const [allGoals, setAllGoals] = useState([] as Goal[]);
     const [incompletedGoals, setIncompletedGoals] = useState([] as Goal[]);
     const [editing, setEditing] = useState(false);
@@ -46,11 +46,9 @@ const Goals = () => {
     }
 
     const handleEditUpdate = async (editedGoal: {}) => {
-        console.log(displayPost)
             try {
-                const response = await axios.put(`http://localhost:4000/goals/${displayPost}`, editedGoal )
+                const response = await axios.put(`http://localhost:4000/goals/${displayedPostID}`, editedGoal )
                 setEditing(false);
-                console.log(response)
                 setEditedGoal({
                     title: '',
                     toBeCompletedBy: ''
@@ -122,7 +120,7 @@ const Goals = () => {
                 <p id='dismiss-tip' className='text-sea-green-blue underline w-16'>Dismiss</p>
             </div>
             {incompletedGoals.map((incompleteGoal)=> {
-                const isDisplayed = incompleteGoal._id === displayPost
+                const isDisplayed = incompleteGoal._id === displayedPostID
                 const date = new Date(incompleteGoal.toBeCompletedBy);
                 const formattedDate = date.toLocaleDateString('en-US', {
                     month:'short',
@@ -132,9 +130,11 @@ const Goals = () => {
 
                 return (
                     //Individual Goal div's
-                    <div className='goal-entry flex flex-col place-content-center bg-light-blue-goals mx-5 my-1 md:h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id}>
-                        {editing ? (
-                            // If Editing mode is true, render editing inputs otherwise render regular data
+                    <div className='goal-entry flex flex-col place-content-center bg-light-blue-goals mx-5 my-1 md:h-20 md:mx-16 xl:mx-24' key={incompleteGoal._id} onClick={()=> {
+                        setDisplayedPostID(incompleteGoal._id)
+                    }}>
+                        {editing && isDisplayed ? (
+                            // If Editing mode and isDisplayed is true, render editing inputs otherwise render regular data
                             <>
                             <h2>Edit Goal</h2>
                             <form className='flex flex-col items-center lg:flex-row lg:justify-between' onSubmit={handleEditSubmit}>
@@ -171,7 +171,6 @@ const Goals = () => {
                                     {/* When Edit Button clicked, set editing state to true */}
                                     <button className='flex flex-row  justify-center bg-sea-green-blue rounded-md px-3 w-28' onClick={() => {
                                         setEditing(true)
-                                        setDisplayPost(incompleteGoal._id)
                                     }}>
                                         <EditIcon className='h-6 self-center text-off-white'/>
                                         <p className='self-center text-lg text-off-white'>Edit</p>
