@@ -4,8 +4,9 @@ import {ReactComponent as GoalIcon} from '../../assets/flag-icon.svg'
 import {ReactComponent as AddIcon} from '../../assets/add-icon.svg'
 import {ReactComponent as DeleteIcon} from '../../assets/delete-icon.svg'
 import {ReactComponent as EditIcon} from '../../assets/edit-icon.svg'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 
 const Goals = () => {
     type Goal = {
@@ -19,13 +20,11 @@ const Goals = () => {
     const [allGoals, setAllGoals] = useState([] as Goal[]);
     const [incompletedGoals, setIncompletedGoals] = useState([] as Goal[]);
     const [editing, setEditing] = useState(false);
+    const navigate = useNavigate();
     const [editedGoal, setEditedGoal] = useState({
         title: '',
         toBeCompletedBy: ''
     });
-
-    const { id } = useParams();
-    const navigate = useNavigate();
     
     //Get goals and filter out incompleted goals to a different array
     const getGoals = async () => {
@@ -53,15 +52,14 @@ const Goals = () => {
                     title: '',
                     toBeCompletedBy: ''
                 });
-                window.location.reload()
+                navigate('/goals')
             } catch(err) {
                 console.log(err)
             }
 
     };
 
-    // When the user clicks the "Edit" button, set the editingGoal state.
-    const [ goalUpdatedData, setGoalUpdatedData ] = useState({})
+
     //Change the data in the object directly
     const handleEditFormChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setEditedGoal({
@@ -146,7 +144,7 @@ const Goals = () => {
                                     <button className='px-3 w-28' onClick={() => {
                                         setEditing(false)
                                     }}>Cancel</button>
-                                    <input type='submit' className='px-3 w-28' value='Update' />
+                                    <input id='new-goal-submit' type='submit' className='px-3 w-28' value='Update' />
                                 </div>
                             </form>
                             </>

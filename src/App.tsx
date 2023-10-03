@@ -34,7 +34,7 @@ function App() {
   
   return (
     <div className='App'>
-      {modalOpen && <AddGoal />} 
+      {modalOpen && <AddGoal modalOpen={modalOpen} onClose={handleCloseGoalModal} />} 
       <Navbar />
       <Routes>
         <Route path='/goals' element={<Goals />} />

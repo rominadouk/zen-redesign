@@ -2,7 +2,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import axios from "axios";
 
-const AddGoal = () => {
+interface AddGoalProps {
+    modalOpen: boolean;
+    onClose: () => void
+}
+
+const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
 
     let emptyGoal = {
         title: '',
@@ -43,6 +48,8 @@ const AddGoal = () => {
         // If the title is not empty, proceed with creating the goal
         try {
             await handleCreateGoal(newGoal);
+            onClose();
+            window.location.reload()
         } catch (error) {
             console.error(error);
         }
