@@ -161,21 +161,24 @@ const Goals = () => {
                                         <p className='text-base place-self-center mr-4'>{formattedDate}</p>
                                 </div>
                                 {/* BUTTONS CONTAINER */}
-                                <div className='flex flex-row justify-center'> 
-                                    <button className='flex flex-row justify-center bg-darker-red rounded-md px-3 w-28' onClick={(event)=> {
+                                {isDisplayed ? (
+                                    <div className='flex flex-row justify-center'> 
+                                    <button className='flex flex-row justify-center bg-darker-red rounded-md px-3 w-22' onClick={(event)=> {
                                         handleDeleteGoal(incompleteGoal)
                                     }}>
                                         <DeleteIcon className='h-6 self-center text-off-white'/>
-                                        <p className='self-center text-lg text-off-white'>Delete</p>
+                                        {/* <p className='self-center text-lg text-off-white'>Delete</p> */}
                                     </button>
                                     {/* When Edit Button clicked, set editing state to true */}
-                                    <button className='flex flex-row  justify-center bg-sea-green-blue rounded-md px-3 w-28' onClick={() => {
+                                    <button className='flex flex-row  justify-center bg-sea-green-blue rounded-md px-3 w-22' onClick={() => {
                                         setEditing(true)
                                     }}>
                                         <EditIcon className='h-6 self-center text-off-white'/>
-                                        <p className='self-center text-lg text-off-white'>Edit</p>
+                                        {/* <p className='self-center text-lg text-off-white'>Edit</p> */}
                                     </button>
                                 </div>
+                                ) : ''}
+
                             </>
                         )}
                     </div>
