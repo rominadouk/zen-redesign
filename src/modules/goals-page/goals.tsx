@@ -97,7 +97,7 @@ const Goals = () => {
 
 
     return (
-        <div className='font-archivo'>
+        <div className='font-archivo mb-24'>
             {/* GOALS HEADER */}
             <section id='goals-top' className='flex flex-row mt-12 mb-4 mx-5 md:mx-16 justify-between xl:mx-24'>
                 <div className='flex flex-row'>
