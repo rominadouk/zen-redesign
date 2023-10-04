@@ -28,6 +28,9 @@ const Navbar = () => {
                 {/* Desktop Navbar */}
                 <h1 className='basis-1/6 font-brand text-5xl place-self-center text-center'>zen</h1>
                 <ul id="desktop-nav-ul" className="flex text-xl space-x-12 place-self-center text-center">
+                    <Link to='/'>
+                    <li className='hover:text-sea-green-blue'>Home</li>
+                    </Link>
                     <li className='hover:text-sea-green-blue'>Self-Care</li>
                     <li className='hover:text-sea-green-blue'>Journal</li>
                     <Link to='/goals'>

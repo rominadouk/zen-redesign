@@ -5,6 +5,7 @@ import Footer from './modules/Footer';
 import Goals from './modules/goals-page/goals';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'
+import Home from './modules/home-page/home';
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
       setGoalModalOpen(false);
   };
 
-
+ document.querySelector('body')!.className='flex h-screen w-screen'
+ document.querySelector('html')!.className='flex h-screen w-screen'
       useEffect(() => {
         //When Add New Button is clicked, render the goal component.
         const addButton = document.getElementById('add-goal-button');
@@ -35,10 +37,11 @@ function App() {
     }, [modalOpen]);
   
   return (
-    <div className='App flex flex-col h-screen justify-between'>
+    <div className='App flex flex-col h-screen'>
       {modalOpen && <AddGoal modalOpen={modalOpen} onClose={handleCloseGoalModal} />} 
       <Navbar />
       <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/goals' element={<Goals />} />
       </Routes>
       <Footer />

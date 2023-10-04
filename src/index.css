@@ -3,6 +3,28 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* * {
     border: 1px solid gold;
+} */
+
+#home-main-img {
+    background-image: url('./modules/home-page/images/relaxed.svg');
+    background-size: cover;
+}
+#stand-out-img1 {
+    background-image: url('./modules/home-page/images/stand-pose.svg');
+    background-size: cover;
+}
+#stand-out-img2 {
+    background-image: url('./modules/home-page/images/progress-tracking.svg');
+    background-size: cover;
+
+}
+
+#stand-out-img3 {
+    background-image: url('./modules/home-page/images/guided-mindfulness.svg');
+    background-size: cover;
+}
+.stand-out-imgs {
+    height: 230px;
 }
