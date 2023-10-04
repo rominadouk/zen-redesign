@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
+* {
     border: 1px solid gold;
-} */
+}
 
 #home-main-img {
     background-image: url('./modules/home-page/images/relaxed.svg');
@@ -27,4 +27,18 @@
 }
 .stand-out-imgs {
     height: 230px;
+}
+
+.well-being-img {
+    background-image: url('./modules/home-page/images/well-being-mirror.svg');
+    background-size: cover;
+    height:300px;
+}
+
+@media (min-width: 768px){
+    #well-being-img-desktop {
+        height: auto;
+        width: 400px
+    }
+
 }
