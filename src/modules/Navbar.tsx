@@ -19,8 +19,12 @@ const Navbar = () => {
                         <Link to='/'>
                             <li className='h-8 w-8'><HomeIcon/></li>
                         </Link>
-                        <li className='h-8 w-8'><SelfCareIcon/></li>
-                        <li className='h-8 w-8'> <JournalIcon /></li>
+                        <Link to ='/selfcare'>
+                            <li className='h-8 w-8'><SelfCareIcon/></li>
+                        </Link>
+                        <Link to='/journal'>
+                            <li className='h-8 w-8'> <JournalIcon /></li>
+                        </Link>
                         <Link to='/goals'>
                             <li className='h-8 w-8'> <GoalIcon /> </li>
                         </Link>
@@ -35,10 +39,15 @@ const Navbar = () => {
                     <Link to='/'>
                         <li className='hover:text-sea-green-blue'>Home</li>
                     </Link>
-                    <li className='hover:text-sea-green-blue'>Self-Care</li>
-                    <li className='hover:text-sea-green-blue'>Journal</li>
+                    <Link to='/selfcare'>
+                        <li className='hover:text-sea-green-blue'>Self-Care</li>
+                    </Link>
+                    <Link to='/journal'>
+                        <li className='hover:text-sea-green-blue'>Journal</li>
+                    </Link>
+
                     <Link to='/goals'>
-                    <li className='hover:text-sea-green-blue'>Goals</li>
+                        <li className='hover:text-sea-green-blue'>Goals</li>
                     </Link>
                     <li className='hover:text-sea-green-blue'>Habits</li>
                 </ul>

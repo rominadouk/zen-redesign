@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom"
 import Navbar from './modules/Navbar';
 import Footer from './modules/Footer';
 import Goals from './modules/goals-page/goals';
+import SelfCare from './modules/selfcare-page/self-care';
+import Journal from './modules/journal-page/journal';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'
 import Home from './modules/home-page/home';
@@ -43,6 +45,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/goals' element={<Goals />} />
+        <Route path='/selfcare' element={<SelfCare />} />
+        <Route path='/journal' element={<Journal />} />
       </Routes>
       <Footer />
     </div>
