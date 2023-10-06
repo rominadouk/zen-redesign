@@ -39,7 +39,7 @@ function App() {
     }, [modalOpen]);
   
   return (
-    <div className='App flex flex-col h-screen'>
+    <div className='App flex flex-col h-screen bg-off-white'>
       {modalOpen && <AddGoal modalOpen={modalOpen} onClose={handleCloseGoalModal} />} 
       <Navbar />
       <Routes>
