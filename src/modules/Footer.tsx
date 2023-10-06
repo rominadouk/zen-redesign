@@ -2,7 +2,7 @@ import { ReactComponent as ZenLogo } from '../assets/zen-logo.svg'
 const Footer = () => {
     
     return ( 
-            <footer className='bg-light-brown mt-auto w-screen pb-10 text-base md:flex md:flex-row md:justify-around'>
+            <footer className='bg-light-brown mt-auto w-screen pb-10 text-base md:flex md:flex-row md:justify-around font-archivo'>
                 <div id='footer-logo-container' className='flex flex-row justify-center md:place-self-center md:ml-5'>
                     <ZenLogo className='h-24 mt-6'/>
                 </div>
