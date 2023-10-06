@@ -22,7 +22,7 @@ function App() {
       setGoalModalOpen(false);
   };
 
- document.querySelector('body')!.className='flex h-screen w-screen'
+ document.querySelector('body')!.className='flex h-screen w-screen bg-off-white'
  document.querySelector('html')!.className='flex h-screen w-screen'
       useEffect(() => {
         //When Add New Button is clicked, render the goal component.
@@ -39,7 +39,7 @@ function App() {
     }, [modalOpen]);
   
   return (
-    <div className='App flex flex-col h-screen bg-off-white'>
+    <div className='App flex flex-col h-screen'>
       {modalOpen && <AddGoal modalOpen={modalOpen} onClose={handleCloseGoalModal} />} 
       <Navbar />
       <Routes>
