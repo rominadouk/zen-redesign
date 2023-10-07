@@ -25,7 +25,7 @@ const SelfCare = () => {
             </div>
             <DailyTip />
 
-            <div className="lg:flex lg:flex-row ">
+            <div className="lg:flex lg:flex-row xl:mx-8">
                 {/* SECTION 1 - LEFT ON DESKTOP*/}
                 <section>
                     {/* DAILY CHALLENGE SECTION */}
@@ -37,7 +37,7 @@ const SelfCare = () => {
                     {/* I Want To.. Dropdown */}
                     <div className='mx-5 px-8 pt-3 pb-8 mb-4 drop-shadow-xl bg-pure-white lg:h-80 md:mx-16 lg:ml-16 lg:mr-0'>
                         <p>I want to...</p>
-                        {/* <SelfCareDropdown /> */}
+                        {/* SelfCare Dropdown START */}
                         <div>
                             <Menu as="div" className="relative inline-block text-left">
                             <div className='relative flex flex-col w-60 lg:w-96'>
@@ -87,9 +87,9 @@ const SelfCare = () => {
                         </Menu>
 
                         </div>
+                        {/* Selfcare dropdown END */}
                     </div>
                 </section>
-
                 {/* SECTION 2 - RIGHT ON DESKTOP*/}
                 <section>
                     {/* STREAK DIV */}
