@@ -1,7 +1,7 @@
 import DailyTip from "../DailyTip";
 import { ReactComponent as SelfCareIcon } from '../../assets/selfcare-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SelfCareDropdown from "./self-care-dropdown";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
@@ -113,7 +113,8 @@ const SelfCare = () => {
                         <p className='font-bold'>You achieved</p>
                         <h3 className='text-4xl font-bold text-sea-green-blue'>12 goals!</h3>
                         <p>since you started! You're awesome!</p>
-                        <a href='/goals' className='text-sea-green-blue underline'><p>Go to Goals.</p></a>
+                        <Link to='/goals'><p className='text-sea-green-blue underline'>Go to Goals. </p></Link>
+
 
                     </div>
                     {/* Habits Completed Div */}
@@ -121,7 +122,7 @@ const SelfCare = () => {
                         <p className='font-bold'>You completed</p>
                         <h3 className='text-4xl font-bold text-sea-green-blue'>2 of 12 habits</h3>
                         <p>Consistency is key!</p>
-                        <a href='http://localhost:3000/habits' className='text-sea-green-blue underline'><p>Go to Habits. </p></a>
+                        <Link to='/habits'><p className='text-sea-green-blue underline'>Go to Habits. </p></Link>
                     </div>
                     {/* Today I feel Div */}
                     <div className='flex flex-col mx-5 px-8 pt-3 pb-8 mb-4  lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
