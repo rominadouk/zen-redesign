@@ -121,8 +121,7 @@ const SelfCare = () => {
                         <p className='font-bold'>You completed</p>
                         <h3 className='text-4xl font-bold text-sea-green-blue'>2 of 12 habits</h3>
                         <p>Consistency is key!</p>
-                        <a href='/habits' className='text-sea-green-blue underline'><p>Go to Habits. </p></a>
-
+                        <a href='http://localhost:3000/habits' className='text-sea-green-blue underline'><p>Go to Habits. </p></a>
                     </div>
                     {/* Today I feel Div */}
                     <div className='flex flex-col mx-5 px-8 pt-3 pb-8 mb-4  lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
