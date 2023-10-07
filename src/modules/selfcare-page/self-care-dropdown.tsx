@@ -7,8 +7,8 @@ const SelfCareDropdown = () => {
     return ( 
         <div>
             <Menu as="div" className="relative inline-block text-left">
-            <div>
-                <Menu.Button className="inline-flex  gap-x-1.5 rounded-md bg-white pl-3 w-96 py-2 pl-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50">Select One
+            <div className='flex flex-col w-60 lg:w-96'>
+                <Menu.Button className="inline-flex  gap-x-1.5 rounded-md bg-white pl-3 lg:w-96 py-2 pl-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50">Select One
                     <ChevronDownIcon className="-mr-1 h-5 w-5" aria-hidden="true" />
                 </Menu.Button>
             </div>
@@ -26,7 +26,7 @@ const SelfCareDropdown = () => {
                 <div className="py-1 bg-pure-white">
                     <Menu.Item>
                         {({ active }) => (
-                            <a href="#" className={( active ? 'bg-pure-white text-gray-900' :'text-gray-700 block px-4 py-2 text-sm'
+                            <a href="#" className={( active ? 'bg-pure-white text-gray-900' :' block px-4 py-2 text-sm'
                         )}>exercise</a>
                         )}
                     </Menu.Item>
