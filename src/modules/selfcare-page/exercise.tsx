@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 //this page runs twice because of react strictmode in index.js
 const Exercise = () => {
 
-
  const [exercise, setExercise] = useState([] as any)
 
     const getExercise = async () => {
