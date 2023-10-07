@@ -27,6 +27,7 @@ const Footer = () => {
                 <div id='footer-disclaimer-container' className='ml-4 mt-8 lg:mx-20'>
                     <p className='font-bold'>Disclaimer</p>
                     <p className='mt-1'>The content within this app is provided for educational and informational purposes only. It is not intended to diagnose, treat, cure, or prevent any medical condition or replace professional advice. Consult your healthcare provider for personalized recommendations. </p>
+                    <p className='font-bold mt-3'>**This project was built by Software Developer Romina Douk and designed by UX/UI designer Christian Jackson.</p>
                 </div>
                 
             </footer>

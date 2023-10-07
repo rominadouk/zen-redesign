@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import Navbar from './modules/Navbar';
 import Footer from './modules/Footer';
 import Goals from './modules/goals-page/goals';
-import SelfCare from './modules/selfcare-page/self-care';
+import SelfCare from './modules/selfcare-page/Selfcare';
 import Journal from './modules/journal-page/journal';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'

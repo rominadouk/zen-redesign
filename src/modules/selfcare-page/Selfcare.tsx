@@ -7,6 +7,10 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
+import Skincare from "./skincare-tips";
+// import Exercise from "./exercise";
+import Joke from "./jokes";
+import Social from "./social";
 
 const SelfCare = () => {
 
@@ -88,6 +92,12 @@ const SelfCare = () => {
 
                         </div>
                         {/* Selfcare dropdown END */}
+                        <div>
+                            {selectedSelfCare === 'skincare' && <Skincare />}
+                            {/* {selectedSelfCare === 'exercise' && <Exercise />} */}
+                            {selectedSelfCare === 'laugh' && <Joke />}
+                            {selectedSelfCare === 'social' && <Social />}
+                        </div>
                     </div>
                 </section>
                 {/* SECTION 2 - RIGHT ON DESKTOP*/}
@@ -137,11 +147,6 @@ const SelfCare = () => {
                                             {({ active }) => (
                                                     <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedFeeling('Happy')}}>Happy</li>
                                                 )}
-
-                                                {/* {({ active }) => (
-                                                    <a href="#" className={( active ? 'bg-pure-white text-gray-900' :'text-gray-700 block px-4 py-2 text-sm'
-                                                )}>Happy</a>
-                                                )} */}
                                             </Menu.Item>
                                             {/* Improve my Skin Care Item */}
                                             <Menu.Item>
