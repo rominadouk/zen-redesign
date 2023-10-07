@@ -8,6 +8,7 @@ import Journal from './modules/journal-page/journal';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'
 import Home from './modules/home-page/home';
+import Habits from './modules/habits-page/Habits';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
         <Route path='/goals' element={<Goals />} />
         <Route path='/selfcare' element={<SelfCare />} />
         <Route path='/journal' element={<Journal />} />
+        <Route path='/habits' element={<Habits />} />
       </Routes>
       <Footer />
     </div>
