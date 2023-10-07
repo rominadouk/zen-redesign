@@ -3,10 +3,15 @@ import { ReactComponent as SelfCareIcon } from '../../assets/selfcare-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
 import { useNavigate } from "react-router-dom";
 import SelfCareDropdown from "./self-care-dropdown";
-import FeelingsDropdown from "./feelings-dropdown";
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
 
 const SelfCare = () => {
+
     const navigate = useNavigate();
+    const [selectedFeeling, setSelectedFeeling] = useState('Choose One');
 
     return ( 
         <div className='font-archivo'>
@@ -58,7 +63,60 @@ const SelfCare = () => {
                     {/* Today I feel Div */}
                     <div className='flex flex-col mx-5 px-8 pt-3 pb-8 mb-4  lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
                         <p>Today I feel...</p>
-                        <FeelingsDropdown />
+                        {/*Feelings Dropdown START */}
+                        <div>
+                            <Menu as="div" className="relative inline-block text-left">
+                            <div className='flex flex-col w-60 lg:w-96'>
+                                <Menu.Button className="inline-flex gap-x-1.5 rounded-md bg-white pl-3 py-2 pl-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50">{selectedFeeling}
+                                    <ChevronDownIcon className="-mr-1 h-5 w-5" aria-hidden="true" />
+                                </Menu.Button>
+                            </div>
+
+                                <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-100"
+                                    enterFrom="transform opacity-0 scale-95"
+                                    enterTo="transform opacity-100 scale-100"
+                                    leave="transition ease-in duration-75"
+                                    leaveFrom="transform opacity-100 scale-100"
+                                    leaveTo="transform opacity-0 scale-95"
+                                >
+                                    <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div className="py-1 bg-pure-white">
+                                            <Menu.Item>
+                                            {({ active }) => (
+                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedFeeling('Happy')}}>Happy</li>
+                                                )}
+
+                                                {/* {({ active }) => (
+                                                    <a href="#" className={( active ? 'bg-pure-white text-gray-900' :'text-gray-700 block px-4 py-2 text-sm'
+                                                )}>Happy</a>
+                                                )} */}
+                                            </Menu.Item>
+                                            {/* Improve my Skin Care Item */}
+                                            <Menu.Item>
+                                                {({ active }) => ( <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedFeeling('Sad')}}>Sad</li>
+                                                )}
+                                            </Menu.Item>
+                                            {/* Laugh Item */}
+                                            <Menu.Item>
+                                            {({ active }) => (
+                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none'
+                                                    )} onClick={() => { setSelectedFeeling('Angry')}}>Angry</li>
+                                            )}
+                                            </Menu.Item>
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none'
+                                                    )} onClick={() => { setSelectedFeeling('Happy')}}>Content</li>
+                                                    )}
+                                                </Menu.Item>
+                                        </div>
+                                    </Menu.Items>
+                                </Transition>
+                            </Menu>
+                        </div>
+                        {/* Feelings DropDown END */}
                         <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center mt-3 w-64' onClick={() => {
                             navigate('/journal')
                         }}>

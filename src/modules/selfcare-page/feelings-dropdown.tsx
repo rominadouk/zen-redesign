@@ -49,14 +49,12 @@ const FeelingsDropdown = () => {
                             )}>Angry</li>
                     )}
                     </Menu.Item>
-                    <form method="POST" action="#">
                         <Menu.Item>
                             {({ active }) => (
                             <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none'
                             )}>Content</li>
                             )}
                         </Menu.Item>
-                    </form>
                 </div>
             </Menu.Items>
         </Transition>
