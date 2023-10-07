@@ -32,16 +32,22 @@ const Goals = () => {
         try {
             const response = await axios.get('http://localhost:4000/goals')
                 setAllGoals(response.data)
-                const incompleted = allGoals.filter((goal: Goal) => !goal.isCompleted);
-                setIncompletedGoals(incompleted)
+                console.log(response.data)
+                const incompletedGoals = response.data.filter((goal:Goal)=> !goal.isCompleted);
+                setIncompletedGoals(incompletedGoals)
+                console.log(incompletedGoals)
         } catch (err) {
             console.log(err)
         }
     };
+
+    // const incompleted = allGoals.filter((goal: Goal) => !goal.isCompleted);
+    // setIncompletedGoals(incompleted)
+    // console.log(incompletedGoals)
+
+
     const handleEditSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('handleEditSubmit called')
-        console.log(editedGoal)
         handleEditUpdate(editedGoal)
     }
 
@@ -60,7 +66,6 @@ const Goals = () => {
 
     };
 
-
     //Change the data in the object directly
     const handleEditFormChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setEditedGoal({
@@ -69,18 +74,12 @@ const Goals = () => {
         })
     };
 
-    //hanlde completed, checked goals
-    // const handleCompletedGoals = (e:React.ChangeEvent<HTMLInputElement>) => {
-    //     e.preventDefault();
-    // };
-
-
     //handle the deletion of Goal
     const handleDeleteGoal = async (incompleteGoal: Goal) => {
-        const response = await axios.delete(`http://localhost:4000/goals/${incompleteGoal._id}`)
         try {
+            const response = await axios.delete(`http://localhost:4000/goals/${incompleteGoal._id}`)
             getGoals();
-            window.location.reload()
+            navigate('/goals')
         } catch(err) {
             console.log(err)
         }
@@ -88,7 +87,7 @@ const Goals = () => {
 
     useEffect(()=> {
         getGoals();
-    },[allGoals]);
+    },[]);
 
 
 

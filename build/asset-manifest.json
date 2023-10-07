@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4d4d9fa7.css",
+    "main.js": "/static/js/main.9eef91dc.js",
+    "static/media/relaxed.svg": "/static/media/relaxed.32071d8def5ba818990f.svg",
+    "static/media/well-being-mirror.svg": "/static/media/well-being-mirror.0fb1f6584416b83f8a71.svg",
+    "static/media/stand-pose.svg": "/static/media/stand-pose.25d60111b77d02426e45.svg",
+    "static/media/progress-tracking.svg": "/static/media/progress-tracking.c8ab2f03b6b4cb469242.svg",
+    "static/media/guided-mindfulness.svg": "/static/media/guided-mindfulness.3d6bed4c70e4c3d65869.svg",
+    "static/media/zen-logo.svg": "/static/media/zen-logo.9190f8212389a90cd19d638f1977e9e0.svg",
+    "static/media/selfcare-icon.svg": "/static/media/selfcare-icon.ebaba7780d872dba0e8aab8ea807a232.svg",
+    "static/media/support-icon.svg": "/static/media/support-icon.434924c5344e2fb1f7cc322fffc21516.svg",
+    "static/media/journal-icon.svg": "/static/media/journal-icon.e925f9e440f6aa029528703a6c8cca0b.svg",
+    "static/media/delete-icon.svg": "/static/media/delete-icon.65329eb4d02d742fbbb673d423203636.svg",
+    "static/media/flag-icon.svg": "/static/media/flag-icon.9fb60741e081c06f26c970287b2917c1.svg",
+    "static/media/edit-icon.svg": "/static/media/edit-icon.efbe7b67752aca6fd202c38bc36efe2f.svg",
+    "index.html": "/index.html",
+    "static/media/target-icon.svg": "/static/media/target-icon.d22787d3cda40eda08c0b1c22f5ea84c.svg",
+    "static/media/house-icon.svg": "/static/media/house-icon.3cfe3ea904f061f4296a520e57eba695.svg",
+    "static/media/habits-icon.svg": "/static/media/habits-icon.0de4930ef99dc80d89c6610619a9cf5b.svg",
+    "static/media/add-icon.svg": "/static/media/add-icon.8607c9e120d6c9dde4d5d85a7197e66e.svg",
+    "main.4d4d9fa7.css.map": "/static/css/main.4d4d9fa7.css.map",
+    "main.9eef91dc.js.map": "/static/js/main.9eef91dc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d4d9fa7.css",
+    "static/js/main.9eef91dc.js"
+  ]
+}
