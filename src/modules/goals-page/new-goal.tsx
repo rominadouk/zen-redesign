@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 interface AddGoalProps {
     modalOpen: boolean;
@@ -8,6 +9,7 @@ interface AddGoalProps {
 }
 
 const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
+    const navigate = useNavigate();
 
     let emptyGoal = {
         title: '',
@@ -49,7 +51,7 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
         try {
             await handleCreateGoal(newGoal);
             onClose();
-            window.location.reload()
+            navigate('/goals.tsx')
         } catch (error) {
             console.error(error);
         }

@@ -53,7 +53,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/goals' element={<Goals />} />
+        <Route path='/goals' element={<Goals  onOpen={handleOpenGoalModal}/>} />
         <Route path='/selfcare' element={<SelfCare />} />
         <Route path='/journal' element={<Journal />} />
         <Route path='/habits' element={<Habits />} />

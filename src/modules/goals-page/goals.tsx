@@ -8,8 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import DailyTip from '../DailyTip';
 import axios from 'axios';
 
+interface GoalsProps {
+    onOpen: () => void; // Define the type of onOpen prop
+  }
+  
 
-const Goals = () => {
+const Goals: React.FC<GoalsProps> = ({onOpen}) => {
     type Goal = {
         _id: string,
         title: string,
@@ -100,7 +104,7 @@ const Goals = () => {
                     <h1 className='text-4xl ml-2 font-bold'>Goals</h1>
                 </div>
                 {/* ADD GOAL BUTTON */}
-                <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3'>
+                <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3' onClick={onOpen}>
                     <p className='text-off-white self-center py-2'>Add New</p>
                     <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>
                 </button>
