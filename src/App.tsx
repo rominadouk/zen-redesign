@@ -34,7 +34,15 @@ function App() {
         exitGoalModal?.addEventListener('click', handleCloseGoalModal);
         
         if (modalOpen === true) {
-          goalModal?.addEventListener('click', handleCloseGoalModal)}
+          goalModal?.addEventListener('click', handleCloseGoalModal)};
+          return () => {
+            addButton?.removeEventListener('click', handleOpenGoalModal);
+            exitGoalModal?.removeEventListener('click', handleCloseGoalModal);
+
+            if (modalOpen === true) {
+                goalModal?.removeEventListener('click', handleCloseGoalModal);
+            }
+          }
 
     }, [modalOpen]);
   

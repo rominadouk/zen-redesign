@@ -4,11 +4,12 @@ import axios from 'axios';
 
 
 const Social = () => {
-    const [socialActivity, setSocialActivity] = useState([] as any)
+    const [socialActivity, setSocialActivity] = useState([] as any);
+    const source = axios.CancelToken.source(); // Create a cancel token source
 
     const getActivity = async () => {
-        const response = await axios.get('https://www.boredapi.com/api/activity?type=social')
         try {
+            const response = await axios.get('https://www.boredapi.com/api/activity?type=social')
             setSocialActivity(response.data)
         } catch(err) {
             console.log(err)
@@ -20,6 +21,9 @@ const Social = () => {
 
     useEffect(()=> {
         getActivity()
+        return () => {
+            source.cancel('Component unmounted'); // Cancel the request when the component unmounts
+        };
     }, []);
 
 

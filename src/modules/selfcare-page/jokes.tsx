@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Joke = () => {
     const [joke, setJoke] = useState([] as any);
+    const source = axios.CancelToken.source(); // Create a cancel token source
 
     const getJoke = async () => {
         try {
@@ -16,6 +17,9 @@ const Joke = () => {
 
     useEffect(() => {
         getJoke()
+        return () => {
+            source.cancel('Component unmounted'); // Cancel the request when the component unmounts
+        };
     }, []);
 //use conditional rendering, checks if the right side is true first, if it is, it will render the right side. 
     return (

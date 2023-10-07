@@ -3,6 +3,7 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 const Skincare = () => {
     const [tip, setRandomTip] = useState('')
     const [activity, setRandomActivity] = useState('')
+    
 
 
     //useMemo hook memoize the arrays of tips & activities instead of creating them each render. Computer knows these will always stay the same unless it's dependencies change. 

@@ -30,10 +30,6 @@ const FeelingsDropdown = () => {
                         )}>Happy</li>
                         )}
 
-                        {/* {({ active }) => (
-                            <a href="#" className={( active ? 'bg-pure-white text-gray-900' :'text-gray-700 block px-4 py-2 text-sm'
-                        )}>Happy</a>
-                        )} */}
                     </Menu.Item>
                     {/* Improve my Skin Care Item */}
                     <Menu.Item>
