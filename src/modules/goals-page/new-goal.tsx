@@ -51,7 +51,7 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
         try {
             await handleCreateGoal(newGoal);
             onClose();
-            navigate('/goals.tsx')
+            window.location.reload()
         } catch (error) {
             console.error(error);
         }

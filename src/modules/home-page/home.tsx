@@ -3,7 +3,7 @@ import { ReactComponent as SupportIcon} from "./images/support-icon.svg"
 
 const Home = () => {
     return ( 
-        <div className='font-archivo'>
+        <div className='font-archivo w-screen'>
             {/* Main Top Image + Image Description*/}
             <div id='home-main-img' className='w-screen h-60 lg:h-96'></div>
             <div className='mx-4 mt-9 md:flex md:flex-row md:justify-center lg:mt-16 lg:mx-20'>

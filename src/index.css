@@ -10,6 +10,7 @@
 #home-main-img {
     background-image: url('./modules/home-page/images/relaxed.svg');
     background-size: cover;
+    width: 100vw;
 }
 #stand-out-img1 {
     background-image: url('./modules/home-page/images/stand-pose.svg');

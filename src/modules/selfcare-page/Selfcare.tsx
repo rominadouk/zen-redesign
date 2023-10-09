@@ -29,7 +29,7 @@ const SelfCare = () => {
             </div>
             <DailyTip />
 
-            <div className="lg:flex lg:flex-row xl:mx-8">
+            <div className="lg:flex lg:flex-row xl:mx-8 w-screen">
                 {/* SECTION 1 - LEFT ON DESKTOP*/}
                 <section>
                     {/* DAILY CHALLENGE SECTION */}
