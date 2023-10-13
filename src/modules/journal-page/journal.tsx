@@ -1,39 +1,66 @@
-import DailyTip from "../DailyTip";
+// import DailyTip from "../DailyTip";
 import { ReactComponent as JournalIcon } from '../../assets/journal-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
-import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
+// import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const Journal = () => {
-
+    // Set States & Variables
     const [allJournals, setAllJournals] = useState([] as any);
-    const [thisYear, setThisYear] = useState(0)
-
+    const [thisYear, setThisYear] = useState(0);
+    const [currentYearJournals, setCurrentYearJournals] = useState<any[]>([]);
     const today = new Date();
-    const year = today.getFullYear();
-// Journal date has journal.createdAt and journal.updatedAt for timestamps.
+    const currentYear = today.getFullYear();
+    const [journalMonths, setJournalMonths] = useState({})
+    const journalsByMonth: {[month:string]: any[]} = {}
 
     const getJournals = async () => {
         try {
             const response = await axios.get('http://localhost:4000/journals')
             setAllJournals(response.data)
-            // sortJournalsByYear()
         } catch(err) {
             console.log(err)
         }
 
     }
 
-    // const sortJournalsByYear = () => {
-    //     allJournals.forEach((journal:any) => {
-    //         const journalDate = new Date(journal.createdAt)
-    //     })
+    const sortJournalsByYearAndMonth = () => {
+        const currentYearJournals = allJournals.filter((journal:any) => {
+            const journalDate = new Date(journal.createdAt);
+
+            const journalYear = journalDate.getFullYear();
+
+            return journalYear === currentYear;
+        });
+    
+        setCurrentYearJournals(currentYearJournals);
+
+        //Filter by month
+        currentYearJournals.forEach((journal:any) => {
+            const journalDate = new Date(journal.createdAt);
+            const journalMonth = journalDate.toLocaleDateString('en-US', {
+                month:'long'
+            });
+
+
+            //check if month is already in the object, if not, create an array
+            if(!journalsByMonth[journalMonth]) {
+                journalsByMonth[journalMonth] = []
+            }
+            
+            //push journal to correspongind month's array
+            journalsByMonth[journalMonth].push(journal);
+        });
+        setJournalMonths(journalsByMonth)
+        // console.log(journalsByMonth)
+    };
 
     useEffect(() => {
         getJournals();
-        setThisYear(year);
-    }, [])
+        setThisYear(currentYear);
+        sortJournalsByYearAndMonth();
+    }, []);
 
 
 
