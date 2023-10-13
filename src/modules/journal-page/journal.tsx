@@ -12,17 +12,23 @@ const Journal = () => {
 
     const today = new Date();
     const year = today.getFullYear();
-
+// Journal date has journal.createdAt and journal.updatedAt for timestamps.
 
     const getJournals = async () => {
         try {
             const response = await axios.get('http://localhost:4000/journals')
             setAllJournals(response.data)
+            // sortJournalsByYear()
         } catch(err) {
             console.log(err)
         }
 
     }
+
+    // const sortJournalsByYear = () => {
+    //     allJournals.forEach((journal:any) => {
+    //         const journalDate = new Date(journal.createdAt)
+    //     })
 
     useEffect(() => {
         getJournals();
@@ -48,21 +54,42 @@ const Journal = () => {
                 </div>
                 {/* SEARCH BAR */}
                     <div className='flex mt-7 h-12'>
-                        <input type='text' name='journal-search' className='grow rounded-lg border border-black p-4' placeholder='Search by title or date'/>
+                        <input type='text' name='journal-search' className='grow rounded-md border border-black p-4' placeholder='Search by title or date'/>
                     </div>
                     {/* <SearchIcon /> */}
             </section>
-
-            <DailyTip />
+            {/* <DailyTip /> */}
             <section id='journals-display' >
                 {/* BEGIN TERNARY: If render Journals is true, render data, if not then display info for no existing journals*/}
                 {allJournals.length > 0 ? 
                 <div className='flex flex-col'>
-                    <p className=' place-self-center'>{thisYear}</p>
+                    <div className="relative flex py-5 items-center mx-5 md:mx-16 xl:mx-24">
+                        <div className="flex-grow border-t border-gray-400"></div>
+                            <span className="flex-shrink mx-4 text-gray-400 text-2xl">{thisYear}</span>
+                        <div className="flex-grow border-t border-gray-400"></div>
+                    </div>
                     {allJournals.map((journal:any)=> {
+                        // Formatting Date & Time
+                        const date = new Date(journal.createdAt);
+                        const formattedDateMonthYear = date.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            // year: 'numeric'
+                        });
+
+                        const formattedWeekday = date.toLocaleDateString('en-US', {
+                            weekday: 'long'
+                        });
+
+                        const formattedTime = date.toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
                         return (
                             <div className='mx-5 px-8 pt-3 pb-8 mb-4 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0' key={journal._id}>
-                                <p>{journal.title}</p>
+                                <p className='text-2xl'>{journal.title}</p>
+                                <p><span className='font-bold'>{formattedDateMonthYear}</span> | {formattedWeekday}, {formattedTime}</p>
                             </div>
                         )
                     })}
