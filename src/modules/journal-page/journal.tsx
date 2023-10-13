@@ -88,7 +88,8 @@ const Journal = () => {
             {/* <DailyTip /> */}
             <section id='journals-display' >
                 {/* BEGIN TERNARY: If render Journals is true, render data, if not then display info for no existing journals*/}
-                {allJournals.length > 0 ? 
+                {
+                allJournals.length > 0 ? 
                 <div className='flex flex-col'>
                     <div className="relative flex py-5 items-center mx-5 md:mx-16 xl:mx-24">
                         <div className="flex-grow border-t border-gray-400"></div>
@@ -120,7 +121,6 @@ const Journal = () => {
                             </div>
                         )
                     })}
-
                 </div>
                 : 
                 <div className='flex flex-col text-center'>
