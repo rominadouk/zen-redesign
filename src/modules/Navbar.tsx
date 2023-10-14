@@ -22,7 +22,7 @@ const Navbar = () => {
                         <Link to ='/selfcare'>
                             <li className='h-8 w-8'><SelfCareIcon/></li>
                         </Link>
-                        <Link to='/journal'>
+                        <Link to='/journals'>
                             <li className='h-8 w-8'> <JournalIcon /></li>
                         </Link>
                         <Link to='/goals'>
@@ -42,7 +42,7 @@ const Navbar = () => {
                     <Link to='/selfcare'>
                         <li className='hover:text-sea-green-blue'>Self-Care</li>
                     </Link>
-                    <Link to='/journal'>
+                    <Link to='/journals'>
                         <li className='hover:text-sea-green-blue'>Journal</li>
                     </Link>
 

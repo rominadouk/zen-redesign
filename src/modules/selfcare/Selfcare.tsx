@@ -176,7 +176,7 @@ const SelfCare = () => {
                         </div>
                         {/* Feelings DropDown END */}
                         <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center mt-3 w-64' onClick={() => {
-                            navigate('/journal')
+                            navigate('/journals')
                         }}>
                             <p className='text-off-white self-center py-2'>Start New Journal Entry</p>
                             <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>

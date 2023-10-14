@@ -95,8 +95,10 @@ const Journal = () => {
                         <JournalIcon className='w-8 h-8 self-center'/>
                         <h1 className='text-4xl ml-2 font-bold'>Journal</h1>
                     </div>
-                    {/* ADD GOAL BUTTON */}
-                    <button className='flex bg-sea-green-blue rounded-md px-3'>
+                    {/* ADD JOURNAL BUTTON */}
+                    <button className='flex bg-sea-green-blue rounded-md px-3' onClick={() => {
+                        navigate('/journals/newjournal')
+                    }}>
                         <p className='text-off-white self-center py-2'>Add New</p>
                         <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>
                     </button>
@@ -148,9 +150,9 @@ const Journal = () => {
                                             hour: '2-digit',
                                             minute: '2-digit'
                                         });
-                                        // Return formatted Journal Information
+                                        // Each Journal Div | Return formatted Journal Information
                                         return (
-                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0' key={journal._id} onClick={() => {
+                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0 cursor-pointer' key={journal._id} onClick={() => {
                                                 navigate(`/journals/${journal._id}`)
                                             }}>
                                                 <p className='text-2xl'>{journal.title}</p>

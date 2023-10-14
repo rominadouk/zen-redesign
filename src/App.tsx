@@ -6,6 +6,7 @@ import Goals from './modules/goals-page/goals';
 import SelfCare from './modules/selfcare/Selfcare';
 import Journal from './modules/journals/Journals';
 import JournalView from './modules/journals/journal-view';
+import AddJournal from './modules/journals/new-journal';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'
 import Home from './modules/home-page/HomePage';
@@ -56,9 +57,10 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/goals' element={<Goals  onOpen={handleOpenGoalModal}/>} />
         <Route path='/selfcare' element={<SelfCare />} />
-        <Route path='/journal' element={<Journal />} />
+        <Route path='/journals' element={<Journal />} />
         <Route path='/habits' element={<Habits />} />
         <Route path='/journals/:id' element={<JournalView />} />
+        <Route path='/journals/newjournal' element={<AddJournal />} />
       </Routes>
       <Footer />
     </div>
