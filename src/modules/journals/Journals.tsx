@@ -133,6 +133,8 @@ const Journal = () => {
                                             <h2 className='text-2xl place-self-center'>{month}</h2>
                                         </div>
                                     </div>
+
+                                    <div className='md:flex md:flex-row md:flex-wrap md:mx-24 '>
                                     {journalMonths[month].map((journal)=> {
                                     // Formatting Date & Time
                                         const date = new Date(journal.createdAt);
@@ -152,7 +154,7 @@ const Journal = () => {
                                         });
                                         // Each Journal Div | Return formatted Journal Information
                                         return (
-                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0 cursor-pointer' key={journal._id} onClick={() => {
+                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white cursor-pointer md:w-80 md:mx-0' key={journal._id} onClick={() => {
                                                 navigate(`/journals/${journal._id}`)
                                             }}>
                                                 <p className='text-2xl'>{journal.title}</p>
@@ -161,6 +163,9 @@ const Journal = () => {
                                             </div>
                                         )
                                     })}
+                                    </div>
+
+
                                 </div>
                             )
                         }

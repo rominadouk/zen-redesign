@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
+* {
     border: 1px solid gold;
-} */
+}
 
 #home-main-img {
     background-image: url('./modules/home-page/images/relaxed.svg');

@@ -14,13 +14,26 @@ const AddJournal = () => {
     const navigate = useNavigate();
     const [journal, setJournal] = useState({} as emptyJournal);
 
-    // const postJournal = () => {
-    //     axios.post('http://localhost:4000/journal')
+    const handleCreate = async (journal:any) => {
+        try {
+            const response = await axios.post('http://localhost:4000/journals', journal)
+            navigate('/journals')
+        } catch (err) {
+            console.log(err)
+        }
+    };
 
-    // }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setJournal({
+            ...journal, [e.target.name]: e.target.value
+        })
+        console.log(journal)
+    };
 
+    //Handle Form Submission
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        handleCreate(journal)
     };
 
     return ( 
@@ -35,23 +48,21 @@ const AddJournal = () => {
                 {/* TITLE INPUT */}
                 <div className='flex flex-col'>
                     <label htmlFor='title' className='mb-1'>Title</label>
-                    <input id='title' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' />
+                    <input id='title' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleChange} />
                 </div>
                 {/* MESSAGE INPUT */}
                 <div className='flex flex-col mt-4'>
                     <label htmlFor='post' className='mb-1'>Message</label>
-                    <textarea id='post' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' />
+                    <textarea id='post' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleChange}/>
                 </div>
                 {/* FORM BUTTONS */}
                 <div className=' flex flex-row justify-center gap-5 mt-6'>
                     <button className=' flex flex-row ring-2 py-2 px-4  w-28 ring-black rounded-sm' onClick={() => {
                         navigate('/journals')
-                        
                     }}>Cancel <CancelIcon  className='ml-2'/>
                     </button>
-                    <input className='ring-1 py-2 px-4 w-28 ring-black bg-smoke-lightest rounded-sm' type='submit' value='Save' />
+                    <input className='ring-1 py-2 px-4 w-28 ring-black bg-smoke-lightest rounded-sm cursor-pointer' type='submit' value='Save' />
                 </div>
-
             </form>
         </div>
      );
