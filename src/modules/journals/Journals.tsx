@@ -4,6 +4,7 @@ import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 // import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Journal = () => {
@@ -14,6 +15,8 @@ const Journal = () => {
     const today = new Date();
     const currentYear = today.getFullYear();
     const [journalMonths, setJournalMonths] = useState<{ [month: string]: Journal[] }>({});
+
+    const navigate = useNavigate();
 
 
     type Journal= {
@@ -145,15 +148,16 @@ const Journal = () => {
                                             hour: '2-digit',
                                             minute: '2-digit'
                                         });
-
+                                        // Return formatted Journal Information
                                         return (
-                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0' key={journal._id}>
+                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-16 lg:mr-0' key={journal._id} onClick={() => {
+                                                navigate(`/journals/${journal._id}`)
+                                            }}>
                                                 <p className='text-2xl'>{journal.title}</p>
-                                                <p><span className='font-bold'>{formattedDateMonthYear}</span> | {formattedWeekday}, {formattedTime}</p>
+                                                <p className='mb-3'><span className='font-bold'>{formattedDateMonthYear}</span> | {formattedWeekday}, {formattedTime}</p>
+                                                <p>{journal.post}</p>
                                             </div>
                                         )
-
-
                                     })}
                                 </div>
                             )

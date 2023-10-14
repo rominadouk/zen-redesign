@@ -2,7 +2,6 @@ import DailyTip from "../DailyTip";
 import { ReactComponent as SelfCareIcon } from '../../assets/selfcare-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
 import { useNavigate, Link } from "react-router-dom";
-import SelfCareDropdown from "./self-care-dropdown";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'

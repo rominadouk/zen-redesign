@@ -3,12 +3,13 @@ import { Route, Routes } from "react-router-dom"
 import Navbar from './modules/Navbar';
 import Footer from './modules/Footer';
 import Goals from './modules/goals-page/goals';
-import SelfCare from './modules/selfcare-page/Selfcare';
-import Journal from './modules/journal-page/journal';
+import SelfCare from './modules/selfcare/Selfcare';
+import Journal from './modules/journals/Journals';
+import JournalView from './modules/journals/journal-view';
 import { useState, useEffect } from 'react';
 import AddGoal from './modules/goals-page/new-goal'
-import Home from './modules/home-page/home';
-import Habits from './modules/habits-page/Habits';
+import Home from './modules/home-page/HomePage';
+import Habits from './modules/habits/Habits';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path='/selfcare' element={<SelfCare />} />
         <Route path='/journal' element={<Journal />} />
         <Route path='/habits' element={<Habits />} />
+        <Route path='/journals/:id' element={<JournalView />} />
       </Routes>
       <Footer />
     </div>
