@@ -95,6 +95,16 @@ const JournalView = () => {
         })
     };
 
+    const deleteJournal = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:4000/journals/${id}`);
+            navigate('/journals')
+        } catch (err) {
+            console.log(err)
+        }
+
+    };
+
 
 
     useEffect(() => {
@@ -123,7 +133,9 @@ const JournalView = () => {
                             </button>
                                 <div className='flex flex-row'>
                                     {/* DELETE BUTTON */}
-                                    <button className='flex bg-darker-red rounded-md px-5'>
+                                    <button className='flex bg-darker-red rounded-md px-5' onClick={() => {
+                                        deleteJournal()
+                                    }}>
                                         <p className='text-off-white self-center py-2'>Delete</p>
                                     </button>
                                     {/* EDIT BUTTON */}
@@ -139,13 +151,13 @@ const JournalView = () => {
                     <form onSubmit={handleEditSubmit}>
                         {/* TITLE INPUT */}
                         <div className='flex flex-col'>
-                            <label htmlFor='title' className='mb-1'>Title</label>
-                            <input id='title' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleEditFormChange} />
+                            <label htmlFor='title-journal' className='mb-1'>Title</label>
+                            <input id='title-journal' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleEditFormChange} />
                         </div>
                         {/* MESSAGE INPUT */}
                         <div className='flex flex-col mt-4'>
-                            <label htmlFor='post' className='mb-1'>Message</label>
-                            <textarea id='post' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleEditFormChange}/>
+                            <label htmlFor='post-journal' className='mb-1'>Message</label>
+                            <textarea id='post-journal' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleEditFormChange}/>
                         </div>
                         {/* FORM BUTTONS */}
                         <div className=' flex flex-row justify-center gap-5 mt-6'>
