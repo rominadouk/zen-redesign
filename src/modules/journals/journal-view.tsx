@@ -146,32 +146,33 @@ const JournalView = () => {
                         </div>
                     </div>
                     {/* HEADER END*/}
+                    {/* BEGIN TERNARY: If editing is true, display edit form, if not display Journal Post */}
                     { editing ? 
-                    <>
-                    <form onSubmit={handleEditSubmit}>
-                        {/* TITLE INPUT */}
-                        <div className='flex flex-col'>
-                            <label htmlFor='title-journal' className='mb-1'>Title</label>
-                            <input id='title-journal' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleEditFormChange} />
-                        </div>
-                        {/* MESSAGE INPUT */}
-                        <div className='flex flex-col mt-4'>
-                            <label htmlFor='post-journal' className='mb-1'>Message</label>
-                            <textarea id='post-journal' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleEditFormChange}/>
-                        </div>
-                        {/* FORM BUTTONS */}
-                        <div className=' flex flex-row justify-center gap-5 mt-6'>
-                            <button className=' flex flex-row ring-2 py-2 px-4  w-28 ring-black rounded-sm' onClick={() => {
-                                setEditing(false)
-                                navigate(`/journals`)
-                            }}>Cancel <CancelIcon  className='ml-2'/>
-                            </button>
+                    <div className='mt-9'>
+                        <h2 className='text-center bg-smoke-lightest mb-5 py-2'>Editing Journal Entry</h2>
+                        <form className='bg-pure-white p-5 drop-shadow-lg' onSubmit={handleEditSubmit}>
+                            {/* TITLE INPUT */}
+                            <div className='flex flex-col'>
+                                <label htmlFor='title-journal' className='mb-1'>Title</label>
+                                <input id='title-journal' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleEditFormChange} />
+                            </div>
+                            {/* MESSAGE INPUT */}
+                            <div className='flex flex-col mt-4'>
+                                <label htmlFor='post-journal' className='mb-1'>Message</label>
+                                <textarea id='post-journal' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleEditFormChange}/>
+                            </div>
+                            {/* FORM BUTTONS */}
+                            <div className=' flex flex-row justify-center gap-5 mt-6'>
+                                <button className=' bg-smoke-darker  py-2 px-4  w-28 rounded-sm place-self-center text-off-white' onClick={() => {
+                                    setEditing(false)
+                                    navigate(`/journals`)
+                                }}>Cancel</button>
 
-                            <input className='ring-1 py-2 px-4 w-28 ring-black bg-smoke-lightest rounded-sm cursor-pointer' type='submit' value='Save' />
-                        </div>
-                    </form>
+                                <input className='py-2 px-4 w-28 bg-sea-green-blue text-off-white rounded-sm cursor-pointer' type='submit' value='Save' />
+                            </div>
+                        </form>
                     
-                    </>
+                    </div>
                     :  
                     <div className='bg-pure-white px-6 py-4 drop-shadow-lg'>
                         <p className='text-xl'>{oneJournal.title}</p>
