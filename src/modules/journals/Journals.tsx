@@ -90,7 +90,7 @@ const Journal = () => {
     return ( 
         <div className='font-archivo'>
             <section className='flex flex-col mt-12 mb-4 mx-5 md:mx-16 xl:mx-24'>
-                <div id='goals-top' className='flex flex-row justify-between '>
+                <div id='journals-top' className='flex flex-row justify-between '>
                     <div className='flex flex-row'>
                         <JournalIcon className='w-8 h-8 self-center'/>
                         <h1 className='text-4xl ml-2 font-bold'>Journal</h1>
