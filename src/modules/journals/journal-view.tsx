@@ -19,6 +19,11 @@ const JournalView = () => {
     const { id } = useParams();
     const [oneJournal, setOneJournal] = useState({} as Journal);
     const navigate = useNavigate();
+    const [formattedDateAndTime, setFormattedDateAndTime] = useState({
+        monthAndDay: "",
+        weekday: "",
+        time: ""
+    });
     //Get a single journal using the parameters in the url, Display the info for that.
 
     const getOneJournal = async () => {
@@ -27,10 +32,36 @@ const JournalView = () => {
             setOneJournal(response.data)
             console.log(response.data)
             console.log(oneJournal)
+            formatDateAndTime(response.data)
         } catch(err) {
             console.log(err)
         }
     };
+
+    const formatDateAndTime = (oneJournal: Journal) => {
+        const journal = oneJournal
+        const date = new Date(journal.createdAt);
+        const formattedDateMonthYear = date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            // year: 'numeric'
+        });
+
+        const formattedWeekday = date.toLocaleDateString('en-US', {
+            weekday: 'long'
+        });
+
+        const formattedTime = date.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        setFormattedDateAndTime({
+            monthAndDay: formattedDateMonthYear,
+            weekday: formattedWeekday,
+            time: formattedTime
+        });
+    }
 
     useEffect(() => {
         getOneJournal();
@@ -68,9 +99,13 @@ const JournalView = () => {
                         </div>
                     </div>
                     {/* HEADER END*/}
-                    <h1>This is the Journal View page</h1>
-                    <p>{oneJournal.title}</p>
-                    <p>{oneJournal.post}</p>
+                    <div className='bg-pure-white px-6 py-4 drop-shadow-lg'>
+                        <p className='text-xl'>{oneJournal.title}</p>
+                        <p className='mb-3'><span className='font-bold'>{formattedDateAndTime.monthAndDay}</span> | <span className='text-smoke'>{formattedDateAndTime.weekday}, {formattedDateAndTime.time}
+                            </span></p>
+                        <p>{oneJournal.post}</p>
+                    </div>
+
             </div> 
         </div>
     );
