@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import {ReactComponent as JournalIcon} from '../../assets/journal-icon.svg'
+import { ReactComponent as CancelIcon } from '../../assets/x-icon.svg'
 import axios from "axios";
 
 const JournalView = () => {
@@ -75,7 +76,7 @@ const JournalView = () => {
 
     const handleEditUpdate = async (editedJournal: {}) => {
         try {
-            const response = await axios.post(`http://localhost:4000/journals/${id}`, editedJournal)
+            const response = await axios.put(`http://localhost:4000/updatepost/${id}`, editedJournal)
             setEditing(false)
             setEditedJournal({
                 title: '',
@@ -87,7 +88,7 @@ const JournalView = () => {
         }
     };
 
-    const handleEditFormChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const handleEditFormChange = (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         setEditedJournal({
             ...editedJournal,
             [e.target.name] : e.target.value
@@ -112,22 +113,8 @@ const JournalView = () => {
                             <JournalIcon className='w-8 h-8 self-center'/>
                             <h1 className='text-4xl ml-2 font-bold'>Journal</h1>
                         </div>
-
                         {/* BUTTONS CONTAINER */}
-                        <div className='flex flex-row justify-between mt-6 mb-2'>
-                        {/* BEGIN TERNARY FOR EDIT BUTTONS */}
-                        { editing ?
-                        // if editing mode is true print the editing buttons
-                        <>
-                            <button className='flex bg-smoke-darker rounded-md px-4' onClick={() => {
-                                navigate('/journals')
-                            }}>
-                                <p className='text-off-white self-center py-2'>Back</p>
-                            </button>
-                        </>
-                            :
-                            // if editing mode is NOT true, display default buttons for Journal View
-                            <>
+                        <div id='buttons-container' className={editing ? 'flex flex-row justify-between mt-6 mb-2 hidden' : 'flex flex-row justify-between mt-6 mb-2'}>
                                 {/* BACK BUTTON */}
                                 <button className='flex bg-smoke-darker rounded-md px-4' onClick={() => {
                                 navigate('/journals')
@@ -144,19 +131,45 @@ const JournalView = () => {
                                         <p className='text-off-white self-center py-2'>Edit</p>
                                     </button>
                                 </div>
-                            
-                            </>
-                        }
-                        {/* END TERNARY FOR EDIT BUTTONS */}
                         </div>
                     </div>
                     {/* HEADER END*/}
+                    { editing ? 
+                    <>
+                    <form onSubmit={handleEditSubmit}>
+                        {/* TITLE INPUT */}
+                        <div className='flex flex-col'>
+                            <label htmlFor='title' className='mb-1'>Title</label>
+                            <input id='title' className='ring-1 ring-inset ring-black rounded-sm p-2' type='text'  name='title' onChange={handleEditFormChange} />
+                        </div>
+                        {/* MESSAGE INPUT */}
+                        <div className='flex flex-col mt-4'>
+                            <label htmlFor='post' className='mb-1'>Message</label>
+                            <textarea id='post' className='ring-1 ring-inset ring-black rounded-sm p-2 h-64' name='post' placeholder='Write here.' onChange={handleEditFormChange}/>
+                        </div>
+                        {/* FORM BUTTONS */}
+                        <div className=' flex flex-row justify-center gap-5 mt-6'>
+                            <button className=' flex flex-row ring-2 py-2 px-4  w-28 ring-black rounded-sm' onClick={() => {
+                                setEditing(false)
+                                navigate(`/journals`)
+                            }}>Cancel <CancelIcon  className='ml-2'/>
+                            </button>
+
+                            <input className='ring-1 py-2 px-4 w-28 ring-black bg-smoke-lightest rounded-sm cursor-pointer' type='submit' value='Save' />
+                        </div>
+                    </form>
+                    
+                    </>
+                    :  
                     <div className='bg-pure-white px-6 py-4 drop-shadow-lg'>
                         <p className='text-xl'>{oneJournal.title}</p>
                         <p className='mb-3'><span className='font-bold'>{formattedDateAndTime.monthAndDay}</span> | <span className='text-smoke'>{formattedDateAndTime.weekday}, {formattedDateAndTime.time}
                             </span></p>
                         <p>{oneJournal.post}</p>
                     </div>
+                    }
+
+
             </div> 
         </div>
     );
