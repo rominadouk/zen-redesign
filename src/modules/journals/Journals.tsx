@@ -30,7 +30,7 @@ const Journal = () => {
 
     const getJournals = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/journals')
+            const response = await axios.get('https://zen-backend-e3xl.onrender.com/journals')
             setAllJournals(response.data)
             // sortJournalsByYearAndMonth()
         } catch(err) {
@@ -134,7 +134,7 @@ const Journal = () => {
                                         </div>
                                     </div>
 
-                                    <div className='md:flex md:flex-row md:flex-wrap md:mx-24 '>
+                                    <div className='md:flex md:flex-row md:flex-wrap md:mx-16 md:gap-x-4 xl:mx-24'>
                                     {journalMonths[month].map((journal)=> {
                                     // Formatting Date & Time
                                         const date = new Date(journal.createdAt);
@@ -154,7 +154,7 @@ const Journal = () => {
                                         });
                                         // Each Journal Div | Return formatted Journal Information
                                         return (
-                                            <div className='mx-5 px-8 pt-3 pb-8 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white cursor-pointer md:w-80 md:mx-0' key={journal._id} onClick={() => {
+                                            <div className='mx-5 px-8 pt-5 pb-9 mb-3 lg:mb-3 drop-shadow-xl bg-pure-white cursor-pointer  md:mx-0 md:w-3/12' key={journal._id} onClick={() => {
                                                 navigate(`/journals/${journal._id}`)
                                             }}>
                                                 <p className='text-2xl'>{journal.title}</p>

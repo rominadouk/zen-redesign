@@ -16,7 +16,7 @@ const AddJournal = () => {
 
     const handleCreate = async (journal:any) => {
         try {
-            const response = await axios.post('http://localhost:4000/journals', journal)
+            const response = await axios.post('https://zen-backend-e3xl.onrender.com/journals', journal)
             navigate('/journals')
         } catch (err) {
             console.log(err)

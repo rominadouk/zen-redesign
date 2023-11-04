@@ -28,7 +28,7 @@ const JournalView = () => {
     //Get a single journal using the parameters in the url, Display the info for that.
     const getOneJournal = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/journals/${id}`);
+            const response = await axios.get(`https://zen-backend-e3xl.onrender.com/journals/${id}`);
             setOneJournal(response.data)
             console.log(response.data)
             console.log(oneJournal)
@@ -76,7 +76,7 @@ const JournalView = () => {
 
     const handleEditUpdate = async (editedJournal: {}) => {
         try {
-            const response = await axios.put(`http://localhost:4000/updatepost/${id}`, editedJournal)
+            const response = await axios.put(`https://zen-backend-e3xl.onrender.com/updatepost/${id}`, editedJournal)
             setEditing(false)
             setEditedJournal({
                 title: '',
@@ -97,7 +97,7 @@ const JournalView = () => {
 
     const deleteJournal = async () => {
         try {
-            const response = await axios.delete(`http://localhost:4000/journals/${id}`);
+            const response = await axios.delete(`https://zen-backend-e3xl.onrender.com/journals/${id}`);
             navigate('/journals')
         } catch (err) {
             console.log(err)
