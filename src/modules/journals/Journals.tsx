@@ -67,7 +67,7 @@ const Journal = () => {
             journalsByMonth[journalMonth].push(journal);
         });
         setJournalMonths(journalsByMonth)
-        console.log(journalsByMonth)
+        // console.log(journalsByMonth)
     };
 
     useEffect(() => {

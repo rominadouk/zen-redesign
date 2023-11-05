@@ -30,8 +30,8 @@ const JournalView = () => {
         try {
             const response = await axios.get(`https://zen-backend-e3xl.onrender.com/journals/${id}`);
             setOneJournal(response.data)
-            console.log(response.data)
-            console.log(oneJournal)
+            // console.log(response.data)
+            // console.log(oneJournal)
             formatDateAndTime(response.data)
         } catch(err) {
             console.log(err)
