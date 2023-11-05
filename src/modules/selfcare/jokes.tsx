@@ -31,7 +31,7 @@ const Joke = () => {
                     <p className='lead'>{joke[0].joke}</p> 
                     <p>*Important Note: These jokes are pulled from a third-party source, they are not moderated and were not created by me. </p>
                     <div className="mt-4 text-right">
-                        <button className="btn btn-dark" onClick={getJoke}>Next Joke</button>
+                        <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={getJoke}>Next Joke</button>
                     </div>
                 </> }
             </div>

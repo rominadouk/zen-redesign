@@ -60,11 +60,11 @@ const SelfCare = () => {
                         >
                             <Menu.Items className="relative left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div className='py-1 bg-pure-white'>
-                                    <Menu.Item>
+                                    {/* <Menu.Item>
                                         {({ active }) => (
                                             <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedSelfCare('exercise')}}>exercise</li>
                                         )}
-                                    </Menu.Item>
+                                    </Menu.Item> */}
                                     {/* Improve my Skin Care Item */}
                                     <Menu.Item>
                                         {({ active }) => (

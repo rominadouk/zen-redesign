@@ -89,6 +89,8 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
         }
     };
 
+  
+
     useEffect(()=> {
         getGoals();
     },[]);

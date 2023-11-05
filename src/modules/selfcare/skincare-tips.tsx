@@ -56,7 +56,10 @@ const Skincare = () => {
         <div>
             <p>Tip: {tip}</p>
             <p>What you can do: {activity}</p>
-            <button onClick={(randomizeTipAndActivity)}>Next</button>
+            <div className="mt-2">
+                <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={(randomizeTipAndActivity)}>Next</button>
+            </div>
+
 
         </div>
         

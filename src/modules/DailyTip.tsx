@@ -8,7 +8,8 @@ const DailyTip = () => {
         document.getElementById('dismiss-tip')?.addEventListener('click', () => {
             const tipContainer = document.getElementById('daily-tip-container')
             tipContainer!.className = 'hidden'
-        })
+        });
+        
     }, [])
     
     return ( 

@@ -35,7 +35,7 @@ const Social = () => {
             <h3>Cost Rating</h3>
             <p className='lead'>{socialActivity.price}</p>
             <div className="mt-4 text-right">
-                <button className="btn btn-dark" onClick={getActivity}>Next Activity</button>
+                <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={getActivity}>Next Activity</button>
             </div>
         </div>
         </>
