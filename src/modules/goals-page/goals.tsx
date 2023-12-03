@@ -4,16 +4,14 @@ import {ReactComponent as GoalIcon} from '../../assets/flag-icon.svg'
 import {ReactComponent as AddIcon} from '../../assets/add-icon.svg'
 import {ReactComponent as DeleteIcon} from '../../assets/delete-icon.svg'
 import {ReactComponent as EditIcon} from '../../assets/edit-icon.svg'
+import AddGoal from './new-goal';
 import { useNavigate } from 'react-router-dom';
 import DailyTip from '../DailyTip';
 import axios from 'axios';
 
-interface GoalsProps {
-    onOpen: () => void; // Define the type of onOpen prop
-  }
-  
 
-const Goals: React.FC<GoalsProps> = ({onOpen}) => {
+const Goals = () => {
+
     type Goal = {
         _id: string,
         title: string,
@@ -30,11 +28,13 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
         title: '',
         toBeCompletedBy: ''
     });
-    
+
+    const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
+
     //Get goals and filter out incompleted goals to a different array
     const getGoals = async () => {
         try {
-            const response = await axios.get('https://zen-backend-e3xl.onrender.com/goals')
+            const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/goals')
                 setAllGoals(response.data)
                 console.log(response.data)
                 const incompletedGoals = response.data.filter((goal:Goal)=> !goal.isCompleted);
@@ -57,7 +57,7 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
 
     const handleEditUpdate = async (editedGoal: {}) => {
             try {
-                const response = await axios.put(`https://zen-backend-e3xl.onrender.com/goals/${displayedPostID}`, editedGoal )
+                const response = await axios.put(`https://zen-backend-863bc7a70008.herokuapp.com/goals/${displayedPostID}`, editedGoal )
                 setEditing(false);
                 setEditedGoal({
                     title: '',
@@ -81,7 +81,7 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
     //handle the deletion of Goal
     const handleDeleteGoal = async (incompleteGoal: Goal) => {
         try {
-            const response = await axios.delete(`https://zen-backend-e3xl.onrender.com/goals/${incompleteGoal._id}`)
+            const response = await axios.delete(`https://zen-backend-863bc7a70008.herokuapp.com/goals/${incompleteGoal._id}`)
             getGoals();
             navigate('/goals')
         } catch(err) {
@@ -106,7 +106,9 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
                     <h1 className='text-4xl ml-2 font-bold'>Goals</h1>
                 </div>
                 {/* ADD GOAL BUTTON */}
-                <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3' onClick={onOpen}>
+                <button id='add-goal-button' className='flex bg-sea-green-blue rounded-md px-3' onClick={() => {
+                    setGoalModalIsOpen(true)
+                }}>
                     <p className='text-off-white self-center py-2'>Add New</p>
                     <AddIcon className='text-off-white h-7 w-7 self-center ml-1'/>
                 </button>
@@ -178,6 +180,9 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
                     </div>
                 )
             })} 
+            { goalModalIsOpen && (
+                <AddGoal isOpen={goalModalIsOpen} setIsOpen={setGoalModalIsOpen} />
+            )}
         </div>
      );
 }

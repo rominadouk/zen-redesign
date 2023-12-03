@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom"
+import React, { useContext } from 'react';
+import { Route, Routes, Navigate } from "react-router-dom"
 import Navbar from './modules/Navbar';
 import Footer from './modules/Footer';
 import Goals from './modules/goals-page/goals';
@@ -8,59 +8,68 @@ import Journal from './modules/journals/Journals';
 import JournalView from './modules/journals/journal-view';
 import AddJournal from './modules/journals/new-journal';
 import { useState, useEffect } from 'react';
-import AddGoal from './modules/goals-page/new-goal'
 import Home from './modules/home-page/HomePage';
 import Habits from './modules/habits/Habits';
+import Login from './modules/authentication/Login';
+import Register from './modules/authentication/Register';
+import Settings from './modules/user-settings/Settings';
+import { AuthContext } from './modules/authentication/AuthContext';
 
 
 function App() {
-  //handling goal modal in app because it needs to go over the navbar
-  const [modalOpen, setGoalModalOpen] = useState(false);
+
+  const ProtectedRoute = ({ children } : {children: JSX.Element}) => {
+
+    const { isAuthenticated } = useContext(AuthContext);
+    if (!isAuthenticated) {
+      // Redirect them to the home page if not authenticated
+      return <Navigate to="/" />;
+    }
   
-  const handleOpenGoalModal = () => {
-      setGoalModalOpen(true);
-  };
-
-  const handleCloseGoalModal = () => {
-      setGoalModalOpen(false);
-  };
-
+    return children;
+  }
  document.querySelector('body')!.className='flex h-screen w-screen bg-off-white'
  document.querySelector('html')!.className='flex h-screen w-screen'
-      useEffect(() => {
-        //When Add New Button is clicked, render the goal component.
-        const addButton = document.getElementById('add-goal-button');
-        const goalModal = document.getElementById('new-goal-modal-bg');
-        const exitGoalModal = document.getElementById('cancel-goal-modal');
 
-        addButton?.addEventListener('click', handleOpenGoalModal);
-        exitGoalModal?.addEventListener('click', handleCloseGoalModal);
-        
-        if (modalOpen === true) {
-          goalModal?.addEventListener('click', handleCloseGoalModal)};
-          return () => {
-            addButton?.removeEventListener('click', handleOpenGoalModal);
-            exitGoalModal?.removeEventListener('click', handleCloseGoalModal);
-
-            if (modalOpen === true) {
-                goalModal?.removeEventListener('click', handleCloseGoalModal);
-            }
-          }
-
-    }, [modalOpen]);
   
   return (
     <div className='App flex flex-col h-screen w-screen'>
-      {modalOpen && <AddGoal modalOpen={modalOpen} onClose={handleCloseGoalModal} />} 
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/goals' element={<Goals  onOpen={handleOpenGoalModal}/>} />
-        <Route path='/selfcare' element={<SelfCare />} />
-        <Route path='/journals' element={<Journal />} />
-        <Route path='/habits' element={<Habits />} />
-        <Route path='/journals/:id' element={<JournalView />} />
-        <Route path='/journals/newjournal' element={<AddJournal />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+          <Route path='/goals' element={
+            <ProtectedRoute>
+              <Goals /> 
+            </ProtectedRoute>} />
+          <Route path='/selfcare' element={
+            <ProtectedRoute>
+              <SelfCare />
+            </ProtectedRoute>
+          } />
+          <Route path='/journals' element={
+            <ProtectedRoute>
+              <Journal />
+            </ProtectedRoute>
+          } />
+          <Route path='/habits' element={
+            <ProtectedRoute>
+              <Habits />
+            </ProtectedRoute>
+          } />
+          <Route path='/journals/:id' element={
+          <ProtectedRoute>
+            <JournalView />
+          </ProtectedRoute>} />
+          <Route path='/journals/newjournal' element={
+          <ProtectedRoute>
+            <AddJournal />
+          </ProtectedRoute>} />
+          <Route path='/settings' element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>} />
       </Routes>
       <Footer />
     </div>

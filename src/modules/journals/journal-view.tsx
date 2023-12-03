@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import {ReactComponent as JournalIcon} from '../../assets/journal-icon.svg'
-import { ReactComponent as CancelIcon } from '../../assets/x-icon.svg'
+// import { ReactComponent as CancelIcon } from '../../assets/x-icon.svg'
 import axios from "axios";
 
 const JournalView = () => {
@@ -28,10 +28,8 @@ const JournalView = () => {
     //Get a single journal using the parameters in the url, Display the info for that.
     const getOneJournal = async () => {
         try {
-            const response = await axios.get(`https://zen-backend-e3xl.onrender.com/journals/${id}`);
+            const response = await axios.get(`https://zen-backend-863bc7a70008.herokuapp.com/journals/${id}`);
             setOneJournal(response.data)
-            // console.log(response.data)
-            // console.log(oneJournal)
             formatDateAndTime(response.data)
         } catch(err) {
             console.log(err)
@@ -76,7 +74,7 @@ const JournalView = () => {
 
     const handleEditUpdate = async (editedJournal: {}) => {
         try {
-            const response = await axios.put(`https://zen-backend-e3xl.onrender.com/updatepost/${id}`, editedJournal)
+            const response = await axios.put(`https://zen-backend-863bc7a70008.herokuapp.com/updatepost/${id}`, editedJournal)
             setEditing(false)
             setEditedJournal({
                 title: '',
@@ -97,7 +95,7 @@ const JournalView = () => {
 
     const deleteJournal = async () => {
         try {
-            const response = await axios.delete(`https://zen-backend-e3xl.onrender.com/journals/${id}`);
+            const response = await axios.delete(`https://zen-backend-863bc7a70008.herokuapp.com/journals/${id}`);
             navigate('/journals')
         } catch (err) {
             console.log(err)

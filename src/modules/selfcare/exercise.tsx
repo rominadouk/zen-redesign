@@ -7,7 +7,7 @@ const Exercise = () => {
  const [exercise, setExercise] = useState([] as any)
 
     const getExercise = async () => {
-        const response = await axios.get('https://zen-backend-e3xl.onrender.com/exercises')
+        const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/exercises')
         try {
             setExercise(response.data)
             console.log(response.data)

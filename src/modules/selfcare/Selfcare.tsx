@@ -2,9 +2,7 @@ import DailyTip from "../DailyTip";
 import { ReactComponent as SelfCareIcon } from '../../assets/selfcare-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
 import { useNavigate, Link } from "react-router-dom";
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import  Select  from 'react-select'
 import { useState } from 'react'
 import Skincare from "./skincare-tips";
 // import Exercise from "./exercise";
@@ -14,8 +12,34 @@ import Social from "./social";
 const SelfCare = () => {
 
     const navigate = useNavigate();
-    const [selectedFeeling, setSelectedFeeling] = useState('Choose One');
-    const [selectedSelfCare, setSelectedSelfCare] = useState('Choose one')
+    // const [selectedFeeling, setSelectedFeeling] = useState('Choose One');
+    const [selectedSelfCare, setSelectedSelfCare] = useState('Choose one');
+
+
+    interface OptionType {
+        value: string;
+        label: string;
+    }
+    
+    const handleSelfCareSelectChange = (selectedOption: OptionType | null) => {
+        if (selectedOption) {
+            setSelectedSelfCare(selectedOption.value);
+        } else {
+            // Handle the case where no option is selected (e.g., the user clears the selection)
+            setSelectedSelfCare('');
+        }
+    };
+    const selfcareOptions: OptionType[] = [
+        { value: 'skincare', label: 'improve my skincare' },
+        { value: 'laugh', label: 'laugh' },
+        { value: 'social', label: 'be social' },
+    ];
+    
+    const feelingOptions: OptionType[] = [
+        { value: 'happy', label: 'happy' },
+        { value: 'sad', label: 'sad' },
+        { value: 'frustrated', label: 'frustrated' },
+    ];
 
     return ( 
         <div className='font-archivo'>
@@ -38,59 +62,25 @@ const SelfCare = () => {
                         <p>For many, alone time is a great opportunity for self-reflection and self-discovery. It can also rejuvenate you by balancing your emotions and letting your body physically relax. Not only does this practice help improve your well-being, but it can also improve your relationships with others.</p>
                     </div>
                     {/* I Want To.. Dropdown */}
-                    <div className='mx-5 px-8 pt-3 pb-8 mb-4 drop-shadow-xl bg-pure-white lg:h-80 md:mx-16 lg:ml-16 lg:mr-0'>
+                    <div className='mx-5 px-8 pt-3 pb-8 mb-4 drop-shadow-xl bg-pure-white lg:h-80 md:mx-16 lg:ml-16 lg:mr-0' style={{ position: 'relative', zIndex: 2 }}>
+                        {/* ALT DROP DOWN */}
                         <p>I want to...</p>
-                        {/* SelfCare Dropdown START */}
-                        <div>
-                            <Menu as='div' className='relative inline-block text-left'>
-                            <div className='relative flex flex-col w-60 lg:w-96'>
-                                <Menu.Button className="inline-flex  gap-x-1.5 rounded-md bg-white pl-3 lg:w-96 py-2 pl-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50">{selectedSelfCare}
-                                    <ChevronDownIcon className='-mr-1 h-5 w-5' aria-hidden='true' />
-                                </Menu.Button>
-                            </div>
-
-                        <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-100"
-                            enterFrom="transform opacity-0 scale-95"
-                            enterTo="transform opacity-100 scale-100"
-                            leave="transition ease-in duration-75"
-                            leaveFrom="transform opacity-100 scale-100"
-                            leaveTo="transform opacity-0 scale-95"
-                        >
-                            <Menu.Items className="relative left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <div className='py-1 bg-pure-white'>
-                                    {/* <Menu.Item>
-                                        {({ active }) => (
-                                            <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedSelfCare('exercise')}}>exercise</li>
-                                        )}
-                                    </Menu.Item> */}
-                                    {/* Improve my Skin Care Item */}
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedSelfCare('skincare')}}>improve my skincare</li>
-                                        )}
-                                    </Menu.Item>
-                                    {/* Laugh Item */}
-                                    <Menu.Item>
-                                    {({ active }) => (
-                                        <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedSelfCare('laugh')}}>laugh</li>
-                                    )}
-                                    </Menu.Item>
-                                    <form method="POST" action="#">
-                                        <Menu.Item>
-                                            {({ active }) => (
-                                                <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedSelfCare('social')}}>be social</li>
-                                            )}
-                                        </Menu.Item>
-                                    </form>
-                                </div>
-                            </Menu.Items>
-                        </Transition>
-                        </Menu>
-
-                        </div>
-                        {/* Selfcare dropdown END */}
+                        <Select
+                            options={selfcareOptions}
+                            onChange={handleSelfCareSelectChange}
+                            className="text-sm font-semibold lg:w-72"
+                            styles={{
+                                control: (styles:any) => ({
+                                    ...styles,
+                                    backgroundColor: 'white',
+                                    borderRadius: '0.375rem', // Tailwind .rounded-md
+                                    padding: '1px', // Tailwind py-2 px-2
+                                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Tailwind shadow-sm
+                                    borderColor: 'rgba(0, 0, 0, 0.6)', // Tailwind ring-1 ring-inset ring-black
+                                }),
+                                // You can add more custom styles if needed
+                            }}
+                        />
                         <div>
                             {selectedSelfCare === 'skincare' && <Skincare />}
                             {/* {selectedSelfCare === 'exercise' && <Exercise />} */}
@@ -98,11 +88,13 @@ const SelfCare = () => {
                             {selectedSelfCare === 'social' && <Social />}
                         </div>
                     </div>
+                    {/* Selfcare dropdown END */}
+
                 </section>
                 {/* SECTION 2 - RIGHT ON DESKTOP*/}
                 <section>
                     {/* STREAK DIV */}
-                    <div className='mx-5 px-8 pt-3 pb-8 mb-4 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
+                    <div className='mx-5 px-8 pt-3 pb-8 mb-4 z-0 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
                         <p className="font-bold">You're on a streak</p>
                         <h3 className="text-4xl font-bold text-sea-green-blue">3 days in a row</h3>
                         <p>Congratulations!</p>
@@ -124,57 +116,27 @@ const SelfCare = () => {
                         <Link to='/habits'><p className='text-sea-green-blue underline'>Go to Habits. </p></Link>
                     </div>
                     {/* Today I feel Div */}
-                    <div className='flex flex-col mx-5 px-8 pt-3 pb-8 mb-4  lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
-                        <p>Today I feel...</p>
+                    <div className='flex flex-col mx-5 px-8 pt-3 pb-8 mb-4 lg:mb-3 drop-shadow-xl bg-pure-white md:mx-16 lg:ml-4'>
                         {/*Feelings Dropdown START */}
                         <div>
-                            <Menu as="div" className="relative inline-block text-left">
-                            <div className='flex flex-col w-60 lg:w-96'>
-                                <Menu.Button className="inline-flex gap-x-1.5 rounded-md bg-white pl-3 py-2 pl-3 text-sm font-semibold shadow-sm ring-1 ring-inset ring-black hover:bg-gray-50">{selectedFeeling}
-                                    <ChevronDownIcon className="-mr-1 h-5 w-5" aria-hidden="true" />
-                                </Menu.Button>
-                            </div>
-
-                                <Transition
-                                    as={Fragment}
-                                    enter="transition ease-out duration-100"
-                                    enterFrom="transform opacity-0 scale-95"
-                                    enterTo="transform opacity-100 scale-100"
-                                    leave="transition ease-in duration-75"
-                                    leaveFrom="transform opacity-100 scale-100"
-                                    leaveTo="transform opacity-0 scale-95"
-                                >
-                                    <Menu.Items className="absolute left-0  mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div className="py-1 bg-pure-white">
-                                            <Menu.Item>
-                                            {({ active }) => (
-                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedFeeling('Happy')}}>Happy</li>
-                                                )}
-                                            </Menu.Item>
-                                            {/* Improve my Skin Care Item */}
-                                            <Menu.Item>
-                                                {({ active }) => ( <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none')} onClick={() => { setSelectedFeeling('Sad')}}>Sad</li>
-                                                )}
-                                            </Menu.Item>
-                                            {/* Laugh Item */}
-                                            <Menu.Item>
-                                            {({ active }) => (
-                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none'
-                                                    )} onClick={() => { setSelectedFeeling('Angry')}}>Angry</li>
-                                            )}
-                                            </Menu.Item>
-                                                <Menu.Item>
-                                                    {({ active }) => (
-                                                    <li className={( active ? 'px-4 py-2 bg-off-white list-none' :'px-4 py-2 text-sm list-none'
-                                                    )} onClick={() => { setSelectedFeeling('Happy')}}>Content</li>
-                                                    )}
-                                                </Menu.Item>
-                                        </div>
-                                    </Menu.Items>
-                                </Transition>
-                            </Menu>
+                            <p>Today I feel...</p>
+                            <Select
+                            options={feelingOptions}
+                            className="text-sm font-semibold lg:w-72"
+                            styles={{
+                                control: (styles:any) => ({
+                                    ...styles,
+                                    backgroundColor: 'white',
+                                    borderRadius: '0.375rem', // Tailwind .rounded-md
+                                    padding: '1px', // Tailwind py-2 px-2
+                                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Tailwind shadow-sm
+                                    borderColor: 'rgba(0, 0, 0, 0.6)', // Tailwind ring-1 ring-inset ring-black
+                                }),
+                                // You can add more custom styles if needed
+                            }}
+                        />
                         </div>
-                        {/* Feelings DropDown END */}
+                        {/* Feelings Dropdown END */}
                         <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center mt-3 w-64' onClick={() => {
                             navigate('/journals')
                         }}>

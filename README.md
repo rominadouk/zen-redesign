@@ -5,7 +5,7 @@ Designed by UX/UI Designer: Christian Jackson
 
 
 This site is deployed on Heroku. https://zen-redesign-33d46e687340.herokuapp.com/
-The backend is deployed at https://zen-backend-e3xl.onrender.com/
+The backend is deployed at https://zen-backend-863bc7a70008.herokuapp.com/
 
 Technologies used: React, React-Router-Dom, Tailwind CSS
 

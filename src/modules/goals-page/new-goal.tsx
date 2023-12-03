@@ -3,13 +3,14 @@ import { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-interface AddGoalProps {
-    modalOpen: boolean;
-    onClose: () => void
+type AddGoalProps = {
+    isOpen: boolean;
+    setIsOpen: (open:boolean) => void
 }
 
-const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
+const AddGoal = ({isOpen, setIsOpen} : AddGoalProps)=> {
     const navigate = useNavigate();
+
 
     let emptyGoal = {
         title: '',
@@ -31,7 +32,7 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
     //sends new object newGoal to the backend
     const handleCreateGoal = async (newGoal: { title: string; toBeCompletedBy: Date; isCompleted: boolean }) => {
         try {
-            const response = await axios.post('https://zen-backend-e3xl.onrender.com/goals', newGoal);
+            const response = await axios.post('https://zen-backend-863bc7a70008.herokuapp.com/goals', newGoal);
             console.log(response);
         } catch (error) {
             console.error(error);
@@ -50,7 +51,6 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
         // If the title is not empty, proceed with creating the goal
         try {
             await handleCreateGoal(newGoal);
-            onClose();
             window.location.reload()
         } catch (error) {
             console.error(error);
@@ -60,7 +60,7 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
 
     return ( 
         // Modal Wrapper: fill entire viewport & center align content, vertically and horizontally. 
-        <div className='flex justify-center'>
+        <div className='flex justify-center fixed inset-0 z-40 bg-black bg-opacity-50'>
             <div id='new-goal-modal-bg' className='h-screen w-screen fixed pin z-40 overflow-auto bg-smoke-dark flex'></div>
             {/* Modal Container */}
             <section className='z-50 fixed flex flex-col my-40 justify-center bg-goal-modal-blue p-2 py-2'>
@@ -74,7 +74,9 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
                     <input id='date-to-complete' className='p-1 rounded-md' type='date' name='toBeCompletedBy' onChange={handleChange} placeholder='e.g. Date to be completed'/>
                     {/* Buttons Div */}
                     <div id='goal-buttons' className='flex flex-row mx-3 mt-4 justify-around'>
-                        <button id='cancel-goal-modal' className='flex bg-off-white rounded-md px-4 py-1 align-center'>Cancel</button>
+                        <button id='cancel-goal-modal' className='flex bg-off-white rounded-md px-4 py-1 align-center' onClick={()=> {
+                            setIsOpen(false)
+                        }}>Cancel</button>
                         <input className='flex bg-sea-green-blue text-off-white rounded-md px-4 py-1 align-center' type='submit'/>
                     </div>
                 </form>

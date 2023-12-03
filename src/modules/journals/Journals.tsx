@@ -30,7 +30,7 @@ const Journal = () => {
 
     const getJournals = async () => {
         try {
-            const response = await axios.get('https://zen-backend-e3xl.onrender.com/journals')
+            const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/journals')
             setAllJournals(response.data)
             // sortJournalsByYearAndMonth()
         } catch(err) {

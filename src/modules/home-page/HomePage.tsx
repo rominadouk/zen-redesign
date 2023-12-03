@@ -1,7 +1,13 @@
 import { ReactComponent as TargetIcon } from "./images/target-icon.svg";
 import { ReactComponent as SupportIcon} from "./images/support-icon.svg"
+import { Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../authentication/AuthContext";
+import { useState, useContext } from "react";
 
 const Home = () => {
+    const navigate = useNavigate()
+    const { isAuthenticated } = useContext(AuthContext);
+
     return ( 
         <div className='font-archivo w-screen'>
             {/* Main Top Image + Image Description*/}
@@ -12,8 +18,12 @@ const Home = () => {
                     <p className='mt-1 md:w-96 md:ml-10 lg:mt-0 lg:w-96'>Don't wait any longer to revitalize your life. Zen is your partner in self-care, designed to fit seamlessly into your daily routine. Start your journey towards a happier, healthier you today. Download Zen and embark on a transformational path of self-discovery and well-being.</p>
                     {/* BUTTONS TOP */}
                     <div className=' flex flex-row mt-2 md:ml-10'>
-                        <button className='bg-sea-green-blue hover:bg-blue-500 text-off-white font-semibold py-2 px-4 hover:border-transparent rounded mr-2'>Try Zen for Free</button>
-                        <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-sea-green-blue hover:border-transparent rounded'>Download</button>
+                        <button className='bg-sea-green-blue hover:bg-blue-500 text-off-white font-semibold py-2 px-4 hover:border-transparent rounded mr-2' onClick={() => {
+                            navigate('/register')
+                        }}>Register</button>
+                        <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-sea-green-blue hover:border-transparent rounded' onClick={() => {
+                            navigate('/login')
+                        }}>Login</button>
                     </div>
                 </div>
 
@@ -73,8 +83,12 @@ const Home = () => {
                 </div>
                 {/* Revitalized Buttons */}
                 <div className='mb-7 mt-3 flex flex-row justify-center'>
-                    <button className='bg-sea-green-blue hover:bg-blue-500 text-off-white font-semibold py-2 px-4 hover:border-transparent rounded mr-2'>Try Zen for Free</button>
-                    <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-sea-green-blue hover:border-transparent rounded'>Download</button>
+                    <button className='bg-sea-green-blue hover:bg-blue-500 text-off-white font-semibold py-2 px-4 hover:border-transparent rounded mr-2'onClick={() => {
+                            navigate('/register')
+                        }}>Register</button>
+                    <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold py-2 px-4 border border-sea-green-blue hover:border-transparent rounded' onClick={() => {
+                            navigate('/login')
+                        }}>Login</button>
                 </div>
             </section>
 
