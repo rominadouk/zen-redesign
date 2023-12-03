@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Route, Routes, Navigate } from "react-router-dom"
 import Navbar from './modules/Navbar';
 import Footer from './modules/Footer';
@@ -7,7 +7,6 @@ import SelfCare from './modules/selfcare/Selfcare';
 import Journal from './modules/journals/Journals';
 import JournalView from './modules/journals/journal-view';
 import AddJournal from './modules/journals/new-journal';
-import { useState, useEffect } from 'react';
 import Home from './modules/home-page/HomePage';
 import Habits from './modules/habits/Habits';
 import Login from './modules/authentication/Login';

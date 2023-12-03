@@ -1,7 +1,7 @@
-import * as React from 'react';
+
 import {ReactComponent as JournalIcon} from '../assets/journal-icon.svg'
 import {ReactComponent as GoalIcon} from '../assets/flag-icon.svg'
-import {ReactComponent as HabitIcon} from '../assets/habits-icon.svg'
+// import {ReactComponent as HabitIcon} from '../assets/habits-icon.svg'
 import {ReactComponent as SelfCareIcon} from '../assets/selfcare-icon.svg'
 import { ReactComponent as HomeIcon } from '../assets/house-icon.svg';
 import { Link, useNavigate } from 'react-router-dom'

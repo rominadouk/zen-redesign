@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 
 type AddGoalProps = {
     isOpen: boolean;
@@ -9,7 +8,6 @@ type AddGoalProps = {
 }
 
 const AddGoal = ({isOpen, setIsOpen} : AddGoalProps)=> {
-    const navigate = useNavigate();
 
 
     let emptyGoal = {
