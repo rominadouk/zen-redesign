@@ -63,7 +63,7 @@ const Goals = () => {
                     title: '',
                     toBeCompletedBy: ''
                 });
-                navigate('/goals')
+                navigate('/goals');
             } catch(err) {
                 console.log(err)
             }

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const Social = () => {
     const [socialActivity, setSocialActivity] = useState([] as any);
-    const source = axios.CancelToken.source(); // Create a cancel token source
 
     const getActivity = async () => {
         try {
@@ -21,9 +20,7 @@ const Social = () => {
 
     useEffect(()=> {
         getActivity()
-        return () => {
-            source.cancel('Component unmounted'); // Cancel the request when the component unmounts
-        };
+
     }, []);
 
 
@@ -35,7 +32,7 @@ const Social = () => {
             <h3>Cost Rating</h3>
             <p className='lead'>{socialActivity.price}</p>
             <div className="mt-4 text-right">
-                <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={getActivity}>Next Activity</button>
+                <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={()=> {getActivity()}}>Next Activity</button>
             </div>
         </div>
         </>

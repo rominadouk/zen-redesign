@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const Joke = () => {
     const [joke, setJoke] = useState([] as any);
-    const source = axios.CancelToken.source(); // Create a cancel token source
 
     const getJoke = async () => {
         try {
@@ -17,9 +16,6 @@ const Joke = () => {
 
     useEffect(() => {
         getJoke()
-        return () => {
-            source.cancel('Component unmounted'); // Cancel the request when the component unmounts
-        };
     }, []);
 //use conditional rendering, checks if the right side is true first, if it is, it will render the right side. 
     return (
@@ -31,7 +27,7 @@ const Joke = () => {
                     <p className='lead'>{joke[0].joke}</p> 
                     <p>*Important Note: These jokes are pulled from a third-party source, they are not moderated and were not created by me. </p>
                     <div className="mt-4 text-right">
-                        <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={getJoke}>Next Joke</button>
+                        <button className='flex bg-sea-green-blue rounded-md px-5 justify-center lg:place-self-center text-off-white' onClick={() => {getJoke()}}>Next Joke</button>
                     </div>
                 </> }
             </div>

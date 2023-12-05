@@ -3,18 +3,16 @@ import { ReactComponent as JournalIcon } from '../../assets/journal-icon.svg'
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 // import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Journal = () => {
     // Set States & Variables
     const [allJournals, setAllJournals] = useState([] as any);
-    const [thisYear, setThisYear] = useState(0);
-    const [currentYearJournals, setCurrentYearJournals] = useState<any[]>([]);
     const today = new Date();
-    const currentYear = today.getFullYear();
-    const [journalMonths, setJournalMonths] = useState<{ [month: string]: Journal[] }>({});
+    const currentYear = new Date().getFullYear();
+
 
     const navigate = useNavigate();
 
@@ -32,58 +30,30 @@ const Journal = () => {
         try {
             const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/journals')
             setAllJournals(response.data)
-            // sortJournalsByYearAndMonth()
         } catch(err) {
             console.log(err)
         }
 
     }
 
-    const sortJournalsByYearAndMonth = () => {
-        const currentYearJournals = allJournals.filter((journal:any) => {
-            const journalDate = new Date(journal.createdAt);
-
-            const journalYear = journalDate.getFullYear();
-
-            return journalYear === currentYear;
-        });
-    
-        setCurrentYearJournals(currentYearJournals);
-
-        //Filter by month
-        currentYearJournals.forEach((journal:any) => {
-            const journalDate = new Date(journal.createdAt);
-            const journalMonth = journalDate.toLocaleDateString('en-US', {
-                month:'long'
-            });
-
-
-            //check if month is already in the object, if not, create an array
-            if(!journalsByMonth[journalMonth]) {
-                journalsByMonth[journalMonth] = []
-            }
-            
-            //push journal to correspongind month's array
-            journalsByMonth[journalMonth].push(journal);
-        });
-        setJournalMonths(journalsByMonth)
-        // console.log(journalsByMonth)
-    };
-
     useEffect(() => {
         getJournals();
-        setThisYear(currentYear);
-        // sortJournalsByYearAndMonth();
     }, []);
 
 
-    //can make multiple useEffect Hooks, sortJournalsByYearAndMonth() will only run when the value in the dependency array changes (allJournals)
+    const journalMonths = useMemo(() => {
+        const journalsByMonth: { [month: string]: Journal[] } = {};
+        allJournals.forEach((journal: Journal) => {
+            const journalDate = new Date(journal.createdAt);
+            const journalMonth = journalDate.toLocaleDateString('en-US', { month: 'long' });
 
-    useEffect(() => {
-        // Sort journals by year and month when 'allJournals' changes
-        sortJournalsByYearAndMonth();
+            if (!journalsByMonth[journalMonth]) {
+                journalsByMonth[journalMonth] = [];
+            }
+            journalsByMonth[journalMonth].push(journal);
+        });
+        return journalsByMonth;
     }, [allJournals]);
-
 
 
 
@@ -117,7 +87,7 @@ const Journal = () => {
                 <div className='flex flex-col'>
                     <div className="relative flex py-5 items-center mx-5 md:mx-16 xl:mx-24">
                         <div className="flex-grow border-t border-gray-400"></div>
-                            <span className="flex-shrink mx-4 text-gray-400 text-2xl">{thisYear}</span>
+                            <span className="flex-shrink mx-4 text-gray-400 text-2xl">{currentYear}</span>
                         <div className="flex-grow border-t border-gray-400"></div>
                     </div>
 
