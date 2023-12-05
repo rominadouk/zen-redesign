@@ -7,7 +7,7 @@ const Joke = () => {
 
     const getJoke = async () => {
         try {
-            const response = await axios.get('https://zen-backend-e3xl.onrender.com/jokes');
+            const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/jokes');
             setJoke(response.data)
             console.log(response.data)
         } catch (err) {

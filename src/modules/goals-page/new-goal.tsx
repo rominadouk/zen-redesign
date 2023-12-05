@@ -31,7 +31,7 @@ const AddGoal: React.FC<AddGoalProps> = ({ modalOpen, onClose })=> {
     //sends new object newGoal to the backend
     const handleCreateGoal = async (newGoal: { title: string; toBeCompletedBy: Date; isCompleted: boolean }) => {
         try {
-            const response = await axios.post('https://zen-backend-e3xl.onrender.com/goals', newGoal);
+            const response = await axios.post('https://zen-backend-863bc7a70008.herokuapp.com/goals', newGoal);
             console.log(response);
         } catch (error) {
             console.error(error);

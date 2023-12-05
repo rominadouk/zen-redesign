@@ -34,7 +34,7 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
     //Get goals and filter out incompleted goals to a different array
     const getGoals = async () => {
         try {
-            const response = await axios.get('https://zen-backend-e3xl.onrender.com/goals')
+            const response = await axios.get('https://zen-backend-863bc7a70008.herokuapp.com/goals')
                 setAllGoals(response.data)
                 console.log(response.data)
                 const incompletedGoals = response.data.filter((goal:Goal)=> !goal.isCompleted);
@@ -57,7 +57,7 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
 
     const handleEditUpdate = async (editedGoal: {}) => {
             try {
-                const response = await axios.put(`https://zen-backend-e3xl.onrender.com/goals/${displayedPostID}`, editedGoal )
+                const response = await axios.put(`https://zen-backend-863bc7a70008.herokuapp.com/goals/${displayedPostID}`, editedGoal )
                 setEditing(false);
                 setEditedGoal({
                     title: '',
@@ -81,7 +81,7 @@ const Goals: React.FC<GoalsProps> = ({onOpen}) => {
     //handle the deletion of Goal
     const handleDeleteGoal = async (incompleteGoal: Goal) => {
         try {
-            const response = await axios.delete(`https://zen-backend-e3xl.onrender.com/goals/${incompleteGoal._id}`)
+            const response = await axios.delete(`https://zen-backend-863bc7a70008.herokuapp.com/goals/${incompleteGoal._id}`)
             getGoals();
             navigate('/goals')
         } catch(err) {
